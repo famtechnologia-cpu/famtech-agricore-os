@@ -8,7 +8,8 @@ import logging
 from datetime import datetime, timezone
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, func
-from ..models.all_models import Rule, RuleExecution, SensorReading, Alert, AlertSeverity, AlertStatus, RuleTriggerType
+from sqlalchemy.orm import selectinload
+from ..models.all_models import Rule, RuleExecution, SensorReading, Alert, AlertSeverity, AlertStatus, RuleTriggerType, FarmUser, User, FarmRole
 
 log = logging.getLogger("rules-engine")
 
@@ -100,3 +101,34 @@ async def _evaluate_threshold_rule(rule: Rule, device_id: str, farm_id: str, db:
     rule.last_fired_at = datetime.now(timezone.utc)
     await db.commit()
     log.info(f"Rule '{rule.name}' fired → Alert created (severity={severity_str})")
+
+    # Dispatch external notifications if configured
+    sms_cfg = action.get("send_sms")
+    email_cfg = action.get("send_email")
+    if sms_cfg or email_cfg:
+        roles_to_notify = set()
+        if sms_cfg: roles_to_notify.update(sms_cfg.get("roles", []))
+        if email_cfg: roles_to_notify.update(email_cfg.get("roles", []))
+        
+        if roles_to_notify:
+            role_enums = [FarmRole[r.upper()] for r in roles_to_notify if r.upper() in FarmRole.__members__]
+            if role_enums:
+                farm_users = (await db.execute(
+                    select(FarmUser)
+                    .options(selectinload(FarmUser.user))
+                    .where(FarmUser.farm_id == farm_id, FarmUser.role.in_(role_enums))
+                )).scalars().all()
+                
+                from .notifications import send_sms, send_email
+                import asyncio
+                
+                subject = f"AgriCore Alert: {alert.title}"
+                msg_body = f"Alert for {device_id}: {alert.message}\nSeverity: {severity_str}"
+                
+                for fu in farm_users:
+                    u = fu.user
+                    role_str = fu.role.name
+                    if sms_cfg and role_str in sms_cfg.get("roles", []) and u.phone:
+                        asyncio.create_task(send_sms(u.phone, msg_body))
+                    if email_cfg and role_str in email_cfg.get("roles", []) and u.email:
+                        asyncio.create_task(send_email(u.email, subject, msg_body))

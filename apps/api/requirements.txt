@@ -17,3 +17,5 @@ python-dateutil==2.9.0
 shapely==2.0.4
 geojson-pydantic==1.1.0
 greenlet==3.0.3
+twilio==9.0.0
+sendgrid==6.11.0

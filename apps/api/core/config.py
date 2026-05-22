@@ -19,4 +19,11 @@ class Settings(BaseSettings):
     FIRST_SUPERUSER_EMAIL: str = "admin@famtech.io"
     FIRST_SUPERUSER_PASSWORD: str = "changeme"
 
+    TWILIO_ACCOUNT_SID: str = ""
+    TWILIO_AUTH_TOKEN: str = ""
+    TWILIO_FROM_NUMBER: str = ""
+
+    SENDGRID_API_KEY: str = ""
+    SENDGRID_FROM_EMAIL: str = "alerts@famtech.io"
+
 settings = Settings()
