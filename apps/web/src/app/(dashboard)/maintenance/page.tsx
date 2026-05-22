@@ -5,6 +5,8 @@ import { useStore } from '@/lib/store/useStore'
 import { Wrench, Plus, Calendar } from 'lucide-react'
 import clsx from 'clsx'
 import { format, formatDistanceToNow } from 'date-fns'
+import { useState } from 'react'
+import LogMaintenanceModal from '@/components/maintenance/LogMaintenanceModal'
 
 interface MaintenanceEvent {
   id: string; device_id: string; type: string; description: string
@@ -22,6 +24,7 @@ const TYPE_COLOR: Record<string, string> = {
 
 export default function MaintenancePage() {
   const currentFarm = useStore((s) => s.currentFarm)
+  const [showModal, setShowModal] = useState(false)
 
   const { data, isLoading } = useQuery<{ data: MaintenanceEvent[] }>({
     queryKey: ['maintenance', currentFarm?.id],
@@ -39,10 +42,12 @@ export default function MaintenancePage() {
           <h1 className="text-2xl font-display font-bold text-white">Maintenance</h1>
           <p className="text-sm text-slate-400 mt-0.5">{events.length} events logged · {upcoming.length} upcoming</p>
         </div>
-        <button className="btn-primary flex items-center gap-2 text-sm">
+        <button onClick={() => setShowModal(true)} className="btn-primary flex items-center gap-2 text-sm">
           <Plus className="w-4 h-4" /> Log Event
         </button>
       </div>
+
+      {showModal && <LogMaintenanceModal onClose={() => setShowModal(false)} />}
 
       {/* Upcoming due */}
       {upcoming.length > 0 && (
@@ -73,22 +78,37 @@ export default function MaintenancePage() {
             <p>No maintenance events logged.</p>
           </div>
         ) : (
-          <div className="space-y-2">
-            {events.map(e => (
-              <div key={e.id} className="card flex items-start gap-4">
-                <span className={clsx('text-xs font-mono px-2 py-1 rounded-lg shrink-0 mt-0.5', TYPE_COLOR[e.type] || TYPE_COLOR.INSPECTION)}>
-                  {e.type.replace('_', ' ')}
-                </span>
-                <div className="flex-1">
-                  <p className="text-sm text-white">{e.description}</p>
-                  {e.notes && <p className="text-xs text-slate-400 mt-0.5">{e.notes}</p>}
-                  <p className="text-xs text-slate-500 font-mono mt-1">
-                    {format(new Date(e.performed_at), 'dd MMM yyyy HH:mm')}
-                    {e.cost ? ` · $${e.cost}` : ''}
-                  </p>
-                </div>
-              </div>
-            ))}
+          <div className="bg-[#0a0c10] border border-white/5 rounded-xl overflow-hidden mt-4">
+            <table className="w-full text-left text-sm whitespace-nowrap">
+              <thead className="bg-white/[0.02] border-b border-white/5 text-slate-400 font-mono text-xs uppercase">
+                <tr>
+                  <th className="px-4 py-3 font-medium">Date</th>
+                  <th className="px-4 py-3 font-medium">Type</th>
+                  <th className="px-4 py-3 font-medium">Description</th>
+                  <th className="px-4 py-3 font-medium">Notes</th>
+                  <th className="px-4 py-3 font-medium">Cost</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-white/5">
+                {events.map(e => (
+                  <tr key={e.id} className="hover:bg-white/[0.02] transition-colors">
+                    <td className="px-4 py-3 text-slate-300 font-mono text-xs">
+                      {format(new Date(e.performed_at), 'dd MMM yyyy HH:mm')}
+                    </td>
+                    <td className="px-4 py-3">
+                      <span className={clsx('text-[10px] font-mono px-2 py-0.5 rounded-full border border-white/5', TYPE_COLOR[e.type] || TYPE_COLOR.INSPECTION)}>
+                        {e.type.replace('_', ' ')}
+                      </span>
+                    </td>
+                    <td className="px-4 py-3 text-white font-medium">{e.description}</td>
+                    <td className="px-4 py-3 text-slate-400 truncate max-w-[200px]">{e.notes || '—'}</td>
+                    <td className="px-4 py-3 text-slate-400 font-mono">
+                      {e.cost ? `$${e.cost.toFixed(2)}` : '—'}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         )}
       </div>

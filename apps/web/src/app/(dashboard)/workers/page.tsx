@@ -8,6 +8,8 @@ import { Users, MapPin, Clock, Wifi } from 'lucide-react'
 import clsx from 'clsx'
 import { formatDistanceToNow } from 'date-fns'
 import axios from '@/lib/api/client'
+import AddWorkerModal from '@/components/workers/AddWorkerModal'
+import { useState } from 'react'
 
 interface WorkerStatus {
   id: string; name: string; role: string; active: boolean
@@ -59,6 +61,7 @@ function WorkerCard({ worker }: { worker: WorkerStatus }) {
 export default function WorkersPage() {
   const currentFarm = useStore(s => s.currentFarm)
   const qc = useQueryClient()
+  const [showModal, setShowModal] = useState(false)
 
   // Connect WebSocket for live updates
   useFarmSocket()
@@ -93,10 +96,12 @@ export default function WorkersPage() {
             {onSite} on site · {total} active
           </p>
         </div>
-        <button className="btn-primary flex items-center gap-2 text-sm">
+        <button onClick={() => setShowModal(true)} className="btn-primary flex items-center gap-2 text-sm">
           <Users className="w-4 h-4" /> Add Worker
         </button>
       </div>
+
+      {showModal && <AddWorkerModal onClose={() => setShowModal(false)} />}
 
       {/* On-site summary */}
       <div className="grid grid-cols-2 gap-3">
@@ -112,15 +117,66 @@ export default function WorkersPage() {
 
       {isLoading ? (
         <div className="text-slate-500 font-mono text-sm">Loading workers...</div>
+      ) : workers.length === 0 ? (
+        <div className="text-center py-16 text-slate-500">
+          <Users className="w-10 h-10 mx-auto mb-3 opacity-20" />
+          <p>No workers registered. Click "Add Worker" to get started.</p>
+        </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {workers.map(w => <WorkerCard key={w.id} worker={w} />)}
-          {workers.length === 0 && (
-            <div className="col-span-full text-center py-16 text-slate-500">
-              <Users className="w-10 h-10 mx-auto mb-3 opacity-20" />
-              <p>No workers registered. Click "Add Worker" to get started.</p>
-            </div>
-          )}
+        <div className="bg-[#0a0c10] border border-white/5 rounded-xl overflow-hidden">
+          <table className="w-full text-left text-sm whitespace-nowrap">
+            <thead className="bg-white/[0.02] border-b border-white/5 text-slate-400 font-mono text-xs uppercase">
+              <tr>
+                <th className="px-4 py-3 font-medium">Worker</th>
+                <th className="px-4 py-3 font-medium">Status</th>
+                <th className="px-4 py-3 font-medium">Role</th>
+                <th className="px-4 py-3 font-medium">Location</th>
+                <th className="px-4 py-3 font-medium">Last Seen</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-white/5">
+              {workers.map(w => (
+                <tr key={w.id} className={clsx('hover:bg-white/[0.02] transition-colors', !w.active && 'opacity-40')}>
+                  <td className="px-4 py-3">
+                    <div className="flex items-center gap-3">
+                      <div className={clsx(
+                        'w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold shrink-0',
+                        w.on_site ? 'bg-brand/20 text-brand' : 'bg-white/5 text-slate-400'
+                      )}>
+                        {w.name.split(' ').map((n: string) => n[0]).join('').slice(0, 2).toUpperCase()}
+                      </div>
+                      <span className="font-semibold text-white">{w.name}</span>
+                    </div>
+                  </td>
+                  <td className="px-4 py-3">
+                    <span className={clsx(
+                      'text-[10px] font-mono px-2 py-0.5 rounded-full border',
+                      w.on_site ? 'bg-brand/10 text-brand border-brand/20' : 'bg-white/5 text-slate-500 border-white/5'
+                    )}>
+                      {w.on_site ? '● ON SITE' : '○ OFF SITE'}
+                    </span>
+                  </td>
+                  <td className="px-4 py-3 text-slate-300">{w.role}</td>
+                  <td className="px-4 py-3 text-slate-400 font-mono">
+                    {w.lat && w.lng ? (
+                      <div className="flex items-center gap-1.5">
+                        <MapPin className="w-3 h-3" />
+                        {w.lat.toFixed(4)}, {w.lng.toFixed(4)}
+                      </div>
+                    ) : '—'}
+                  </td>
+                  <td className="px-4 py-3 text-slate-400">
+                    {w.last_seen_at ? (
+                      <div className="flex items-center gap-1.5">
+                        <Clock className="w-3 h-3" />
+                        {formatDistanceToNow(new Date(w.last_seen_at), { addSuffix: true })}
+                      </div>
+                    ) : '—'}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       )}
     </div>

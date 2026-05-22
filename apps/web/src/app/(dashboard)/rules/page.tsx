@@ -6,6 +6,7 @@ import { useStore } from '@/lib/store/useStore'
 import { Settings2, ToggleLeft, ToggleRight, Plus, History } from 'lucide-react'
 import clsx from 'clsx'
 import { formatDistanceToNow } from 'date-fns'
+import CreateRuleModal from '@/components/rules/CreateRuleModal'
 
 interface Rule {
   id: string; name: string; enabled: boolean; trigger_type: string
@@ -69,6 +70,7 @@ function RuleCard({ rule, farmId }: { rule: Rule; farmId: string }) {
 
 export default function RulesPage() {
   const currentFarm = useStore((s) => s.currentFarm)
+  const [showModal, setShowModal] = useState(false)
 
   const { data, isLoading } = useQuery<{ data: Rule[] }>({
     queryKey: ['rules', currentFarm?.id],
@@ -88,10 +90,12 @@ export default function RulesPage() {
             {enabled} of {rules.length} rules active
           </p>
         </div>
-        <button className="btn-primary flex items-center gap-2 text-sm">
+        <button onClick={() => setShowModal(true)} className="btn-primary flex items-center gap-2 text-sm">
           <Plus className="w-4 h-4" /> New Rule
         </button>
       </div>
+
+      {showModal && <CreateRuleModal onClose={() => setShowModal(false)} />}
 
       <div className="bg-brand/5 border border-brand/15 rounded-xl px-4 py-3 text-sm text-slate-300">
         <strong className="text-brand">Human override always available.</strong> Toggle any rule off instantly to pause automation without deleting it.

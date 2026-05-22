@@ -49,7 +49,7 @@ export default function FarmMap() {
     if (!mapRef.current || mapInstance.current) return
 
     // Dynamically import Leaflet (SSR safe)
-    import('leaflet').then((L) => {
+    import('leaflet').then(async (L) => {
       // @ts-ignore — Next.js handles CSS imports, but TS lacks the type declaration
       import('leaflet/dist/leaflet.css')
 
@@ -61,6 +61,35 @@ export default function FarmMap() {
         center,
         zoom: 15,
         zoomControl: true,
+      })
+
+      // Ensure Geoman is loaded
+      // @ts-ignore
+      await import('@geoman-io/leaflet-geoman-free')
+      // @ts-ignore
+      import('@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css')
+
+      // @ts-ignore Add Geoman controls to the map
+      map.pm.addControls({
+        position: 'topleft',
+        drawMarker: false,
+        drawCircleMarker: false,
+        drawPolyline: false,
+        drawRectangle: true,
+        drawCircle: false,
+        editMode: true,
+        dragMode: true,
+        cutPolygon: false,
+        removalMode: true,
+      })
+
+      // @ts-ignore Handle polygon creation
+      map.on('pm:create', (e) => {
+        const geojson = (e.layer as any).toGeoJSON()
+        if (farm?.id) {
+          farmApi.update(farm.id, { boundary_geojson: geojson })
+            .catch(err => console.error('Failed to save boundary', err))
+        }
       })
 
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
