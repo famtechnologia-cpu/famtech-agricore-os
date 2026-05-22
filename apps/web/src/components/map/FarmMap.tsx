@@ -50,6 +50,7 @@ export default function FarmMap() {
 
     // Dynamically import Leaflet (SSR safe)
     import('leaflet').then((L) => {
+      // @ts-ignore — Next.js handles CSS imports, but TS lacks the type declaration
       import('leaflet/dist/leaflet.css')
 
       const center: [number, number] = farm?.lat && farm?.lng

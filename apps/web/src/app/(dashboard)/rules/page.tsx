@@ -49,7 +49,7 @@ function RuleCard({ rule, farmId }: { rule: Rule; farmId: string }) {
             {Array.isArray(action.notify) && (
               <p className="text-white">Notify via {(action.notify as string[]).join(', ')}</p>
             )}
-            {action.create_alert && typeof action.create_alert === 'object' && (
+            {Boolean(action.create_alert) && typeof action.create_alert === 'object' && (
               <p className="text-white">
                 Create {String((action.create_alert as Record<string, unknown>).severity)} alert
               </p>
