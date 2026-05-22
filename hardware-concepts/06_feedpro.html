@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Famtech Feedpro — Famtech Hardware</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.1.1/model-viewer.min.js"></script>
+
+  <style>
+    /* ── Hotspot annotations ─────────────────────────────── */
+    button[slot^="hotspot-"] {
+      background: rgba(0,120,255,0.85);
+      border: 2px solid #44aaff;
+      border-radius: 50%;
+      width: 20px; height: 20px;
+      cursor: pointer; padding: 0;
+      position: relative;
+      transition: background 0.15s, transform 0.15s;
+      box-shadow: 0 0 8px rgba(0,120,255,0.5);
+    }
+    button[slot^="hotspot-"]:hover { transform: scale(1.25); background: rgba(0,160,255,0.95); }
+    button[slot^="hotspot-"]:not([data-visible]) {
+      background: transparent; border-color: transparent; pointer-events: none;
+    }
+    button[slot^="hotspot-"]:not([data-visible]) .hs-label { display: none; }
+    .hs-dot {
+      width: 6px; height: 6px; background: #fff; border-radius: 50%;
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    }
+    .hs-label {
+      background: rgba(4,12,34,0.96);
+      border: 1px solid rgba(0,120,255,0.5);
+      border-left: 3px solid #0088ff;
+      border-radius: 0 5px 5px 0;
+      color: #a8d0ff;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px; font-weight: 500;
+      padding: 4px 12px 4px 8px;
+      position: absolute; left: 26px; top: 50%;
+      transform: translateY(-50%);
+      white-space: nowrap; pointer-events: none;
+      letter-spacing: 0.04em;
+    }
+    /* ── 2D Technical Views ──────────────────────────────── */
+    .views-section { margin: 28px 0 0; }
+    .views-section h2 { margin-bottom: 14px; }
+    .views-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .view-card {
+      background: #060c1b;
+      border: 1px solid #1b2f5e;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .view-card svg { display: block; width: 100%; height: auto; }
+    .view-label-bar {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px; letter-spacing: 0.14em;
+      color: #3355aa; text-align: center;
+      padding: 5px 0 4px;
+      background: #030710;
+      border-bottom: 1px solid #0e1e44;
+      text-transform: uppercase;
+    }
+  </style>
+
+  <style id="illus-css">
+    .illus-section { margin: 28px 0 0; }
+    .illus-section h2 { margin-bottom: 14px; }
+    .illus-wrap {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 0;
+      border: 1px solid #1b2f5e;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #060c1b;
+    }
+    .illus-svg-panel svg { display: block; width: 100%; height: auto; }
+    .illus-labels-panel {
+      background: #080e20;
+      border-left: 1px solid #1b2f5e;
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .illus-product-cat {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      color: #2a4888;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .il-callout {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 0;
+      border-bottom: 1px solid #0e1a36;
+    }
+    .il-callout:last-child { border-bottom: none; }
+    .il-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .il-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      color: #8aaccc;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body>
+  <div id="read-progress"></div>
+<nav class="topnav">
+  <a href="index.html" class="nav-back">← Catalog</a>
+  <span class="nav-brand">Famtech Hardware System · SYS-01</span>
+  <div class="nav-product-jump"><a href="05_soilnode.html" class="nav-jump-btn prev">Soilnode</a><a href="07_herdtag.html" class="nav-jump-btn next">Herdtag</a></div>
+</nav>
+<div class="container">
+  <div class="hero">
+    <div>
+      <div class="hero-meta">
+        <span class="badge">SYS-01</span>
+        <span class="badge badge-neutral">IP65</span>
+      </div>
+      <h1>Famtech Feedpro</h1>
+      <p class="hero-desc">Multi-species automated dispensing station for poultry/birds, aquaculture (fish), and bird drinkers — solar-powered with load-cell precision dosing and real-time consumption telemetry.</p>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-chip"><span class="stat-label">Battery</span><span class="stat-value">12V Backup SLA</span></div>
+      <div class="stat-chip"><span class="stat-label">Runtime</span><span class="stat-value">Continuous</span></div>
+      <div class="stat-chip"><span class="stat-label">Power</span><span class="stat-value">Solar + Mains</span></div>
+    </div>
+  </div>
+
+  <section>
+    <h2>360° Interactive View</h2>
+    <div class="viewer-panel">
+      <model-viewer camera-controls auto-rotate auto-rotate-delay="800" rotation-per-second="25deg" environment-image="neutral" skybox-height="2m" exposure="1.35" shadow-intensity="2.2" shadow-softness="0.75" tone-mapping="aces" interaction-prompt="auto" interaction-prompt-threshold="500" min-camera-orbit="auto 5deg 0.4m" max-camera-orbit="auto 175deg 20m" camera-orbit="-20deg 68deg auto" src="models/feedpro.glb">
+        <div slot="poster" class="viewer-poster">
+          <span class="icon">⬡</span>
+          <span>Loading 3D model…</span>
+        </div>
+            <button slot="hotspot-0" data-position="-0.22 1.40 0.000" data-normal="0.0 1.0 0.0" data-visibility-attribute="visible"><div class="hs-dot"></div><div class="hs-label">Hopper Lid</div></button>
+      <button slot="hotspot-1" data-position="0.44 1.05 0.420" data-normal="0.0 0.0 1.0" data-visibility-attribute="visible"><div class="hs-dot"></div><div class="hs-label">Auger Output Spout</div></button>
+      <button slot="hotspot-2" data-position="0.24 1.686 0.000" data-normal="0.0 1.0 0.0" data-visibility-attribute="visible"><div class="hs-dot"></div><div class="hs-label">Control Box</div></button>
+      <button slot="hotspot-3" data-position="0.38 0.80 0.277" data-normal="0.0 0.0 1.0" data-visibility-attribute="visible"><div class="hs-dot"></div><div class="hs-label">Load Cell Mount</div></button>
+    </model-viewer>
+    
+      <div class="viewer-hint">
+        <span class="viewer-hint-pill"><span class="icon">⟳</span>&nbsp;Drag to rotate</span>
+        <span class="viewer-hint-pill"><span class="icon">⊕</span>&nbsp;Scroll to zoom</span>
+        <span class="viewer-hint-pill"><span class="icon">●</span>&nbsp;Tap dots for parts</span>
+      </div>
+</div>
+  </section>
+  <section class="views-section">
+    <h2>2D Technical Views</h2>
+    <div class="views-grid">
+      <div class="view-card"><div class="view-label-bar">Front View</div><svg viewBox="0 0 260 192" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="g" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20,0L0,0L0,20" fill="none" stroke="#0d1a38" stroke-width=".6"/></pattern></defs><rect width="260" height="192" fill="#060c1b"/><rect width="260" height="192" fill="url(#g)"/><line x1="130.0" y1="10.0" x2="130.0" y2="182.0" stroke="#1a3060" stroke-width="0.6" stroke-dasharray="6,3,2,3"/><rect x="72.0" y="35.0" width="116.0" height="120.0" fill="rgba(18,56,130,0.22)" stroke="#2a7ad9" stroke-width="1.2" rx="1"/><polygon points="90.0,35.0 170.0,35.0 160.0,65.0 100.0,65.0" fill="rgba(30,100,200,0.18)" stroke="#2a7ad9" stroke-width="1.2"/><rect x="88.0" y="26.0" width="104.0" height="10.0" fill="rgba(30,100,200,0.18)" stroke="#00cc88" stroke-width="1.2" rx="1"/><rect x="72.0" y="95.0" width="116.0" height="20.0" fill="rgba(30,100,200,0.18)" stroke="#2a7ad9" stroke-width="1.2" rx="1"/><rect x="185.0" y="100.0" width="16.0" height="10.0" fill="rgba(0,180,100,0.20)" stroke="#00cc88" stroke-width="1.2" rx="1"/><rect x="162.0" y="50.0" width="20.0" height="28.0" fill="rgba(8,20,60,0.55)" stroke="#1a5aaa" stroke-width="1.2" rx="1"/><rect x="164.0" y="52.0" width="16.0" height="14.0" fill="rgba(8,20,60,0.55)" stroke="#00aaff" stroke-width="0.8" rx="1"/><rect x="80.0" y="155.0" width="6.0" height="16.0" fill="rgba(8,20,60,0.55)" stroke="#1a5aaa" stroke-width="1.2" rx="1"/><rect x="100.0" y="155.0" width="6.0" height="16.0" fill="rgba(8,20,60,0.55)" stroke="#1a5aaa" stroke-width="1.2" rx="1"/><rect x="168.0" y="155.0" width="6.0" height="16.0" fill="rgba(8,20,60,0.55)" stroke="#1a5aaa" stroke-width="1.2" rx="1"/><rect x="188.0" y="155.0" width="6.0" height="16.0" fill="rgba(8,20,60,0.55)" stroke="#1a5aaa" stroke-width="1.2" rx="1"/><line x1="75.0" y1="171.0" x2="210.0" y2="171.0" stroke="#1a5aaa" stroke-width="1.0"/><line x1="79" y1="171.0" x2="73" y2="179.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="89" y1="171.0" x2="83" y2="179.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="99" y1="171.0" x2="93" y2="179.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="109" y1="171.0" x2="103" y2="179.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="119" y1="171.0" x2="113" y2="179.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="129" y1="171.0" x2="123" y2="179.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="139" y1="171.0" x2="133" y2="179.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="149" y1="171.0" x2="143" y2="179.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="159" y1="171.0" x2="153" y2="179.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="169" y1="171.0" x2="163" y2="179.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="179" y1="171.0" x2="173" y2="179.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="189" y1="171.0" x2="183" y2="179.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="199" y1="171.0" x2="193" y2="179.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="209" y1="171.0" x2="203" y2="179.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="215.0" y1="35.0" x2="224.0" y2="35.0" stroke="#3a6aaa" stroke-width="0.5"/><line x1="215.0" y1="155.0" x2="224.0" y2="155.0" stroke="#3a6aaa" stroke-width="0.5"/><line x1="224.0" y1="35.0" x2="224.0" y2="155.0" stroke="#3a6aaa" stroke-width="0.8"/><text x="228.0" y="98.0" text-anchor="start" font-family="monospace" font-size="7" fill="#3a6aaa">1480mm</text><line x1="72.0" y1="176.0" x2="72.0" y2="167.0" stroke="#3a6aaa" stroke-width="0.5"/><line x1="188.0" y1="176.0" x2="188.0" y2="167.0" stroke="#3a6aaa" stroke-width="0.5"/><line x1="72.0" y1="167.0" x2="188.0" y2="167.0" stroke="#3a6aaa" stroke-width="0.8"/><text x="130.0" y="164.0" text-anchor="middle" font-family="monospace" font-size="7" fill="#3a6aaa">850mm</text><line x1="28.0" y1="28.0" x2="130.0" y2="26.0" stroke="#ff8c00" stroke-width="0.8" stroke-dasharray="3,2"/><circle cx="28.0" cy="28.0" r="7.5" fill="#ff8c00"/><text x="28.0" y="31.5" text-anchor="middle" font-family="monospace" font-size="8" fill="#fff" font-weight="bold">1</text><line x1="28.0" y1="56.0" x2="196.0" y2="105.0" stroke="#ff8c00" stroke-width="0.8" stroke-dasharray="3,2"/><circle cx="28.0" cy="56.0" r="7.5" fill="#ff8c00"/><text x="28.0" y="59.5" text-anchor="middle" font-family="monospace" font-size="8" fill="#fff" font-weight="bold">2</text><line x1="28.0" y1="84.0" x2="172.0" y2="64.0" stroke="#ff8c00" stroke-width="0.8" stroke-dasharray="3,2"/><circle cx="28.0" cy="84.0" r="7.5" fill="#ff8c00"/><text x="28.0" y="87.5" text-anchor="middle" font-family="monospace" font-size="8" fill="#fff" font-weight="bold">3</text><line x1="28.0" y1="112.0" x2="84.0" y2="163.0" stroke="#ff8c00" stroke-width="0.8" stroke-dasharray="3,2"/><circle cx="28.0" cy="112.0" r="7.5" fill="#ff8c00"/><text x="28.0" y="115.5" text-anchor="middle" font-family="monospace" font-size="8" fill="#fff" font-weight="bold">4</text><text x="130.0" y="185.0" text-anchor="middle" font-family="monospace" font-size="7" fill="#3a6aaa">FRONT VIEW</text></svg></div>
+      <div class="view-card"><div class="view-label-bar">Side View</div><svg viewBox="0 0 260 192" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="g" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20,0L0,0L0,20" fill="none" stroke="#0d1a38" stroke-width=".6"/></pattern></defs><rect width="260" height="192" fill="#060c1b"/><rect width="260" height="192" fill="url(#g)"/><rect x="88.0" y="35.0" width="84.0" height="120.0" fill="rgba(18,56,130,0.22)" stroke="#2a7ad9" stroke-width="1.2" rx="1"/><polygon points="102.0,35.0 158.0,35.0 152.0,65.0 108.0,65.0" fill="rgba(30,100,200,0.18)" stroke="#2a7ad9" stroke-width="1.2"/><rect x="86.0" y="26.0" width="88.0" height="10.0" fill="rgba(30,100,200,0.18)" stroke="#00cc88" stroke-width="1.2" rx="1"/><rect x="88.0" y="95.0" width="84.0" height="20.0" fill="rgba(30,100,200,0.18)" stroke="#2a7ad9" stroke-width="1.2" rx="1"/><rect x="94.0" y="155.0" width="6.0" height="16.0" fill="rgba(8,20,60,0.55)" stroke="#1a5aaa" stroke-width="1.2" rx="1"/><rect x="158.0" y="155.0" width="6.0" height="16.0" fill="rgba(8,20,60,0.55)" stroke="#1a5aaa" stroke-width="1.2" rx="1"/><line x1="82.0" y1="171.0" x2="186.0" y2="171.0" stroke="#1a5aaa" stroke-width="1.0"/><line x1="86" y1="171.0" x2="80" y2="179.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="96" y1="171.0" x2="90" y2="179.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="106" y1="171.0" x2="100" y2="179.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="116" y1="171.0" x2="110" y2="179.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="126" y1="171.0" x2="120" y2="179.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="136" y1="171.0" x2="130" y2="179.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="146" y1="171.0" x2="140" y2="179.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="156" y1="171.0" x2="150" y2="179.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="166" y1="171.0" x2="160" y2="179.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="176" y1="171.0" x2="170" y2="179.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="182.0" y1="35.0" x2="191.0" y2="35.0" stroke="#3a6aaa" stroke-width="0.5"/><line x1="182.0" y1="155.0" x2="191.0" y2="155.0" stroke="#3a6aaa" stroke-width="0.5"/><line x1="191.0" y1="35.0" x2="191.0" y2="155.0" stroke="#3a6aaa" stroke-width="0.8"/><text x="195.0" y="98.0" text-anchor="start" font-family="monospace" font-size="7" fill="#3a6aaa">1480mm</text><text x="130.0" y="185.0" text-anchor="middle" font-family="monospace" font-size="7" fill="#3a6aaa">SIDE VIEW</text></svg></div>
+      <div class="view-card"><div class="view-label-bar">Top View</div><svg viewBox="0 0 260 192" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="g" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20,0L0,0L0,20" fill="none" stroke="#0d1a38" stroke-width=".6"/></pattern></defs><rect width="260" height="192" fill="#060c1b"/><rect width="260" height="192" fill="url(#g)"/><rect x="72.0" y="42.0" width="116.0" height="112.0" fill="rgba(18,56,130,0.22)" stroke="#2a7ad9" stroke-width="1.2" rx="1"/><rect x="90.0" y="42.0" width="100.0" height="50.0" fill="rgba(30,100,200,0.18)" stroke="#2a7ad9" stroke-width="1.2" rx="1"/><rect x="188.0" y="88.0" width="16.0" height="10.0" fill="rgba(0,180,100,0.20)" stroke="#00cc88" stroke-width="1.2" rx="1"/><line x1="72.0" y1="20.0" x2="72.0" y2="11.0" stroke="#3a6aaa" stroke-width="0.5"/><line x1="188.0" y1="20.0" x2="188.0" y2="11.0" stroke="#3a6aaa" stroke-width="0.5"/><line x1="72.0" y1="11.0" x2="188.0" y2="11.0" stroke="#3a6aaa" stroke-width="0.8"/><text x="130.0" y="8.0" text-anchor="middle" font-family="monospace" font-size="7" fill="#3a6aaa">850mm</text><text x="130.0" y="185.0" text-anchor="middle" font-family="monospace" font-size="7" fill="#3a6aaa">TOP VIEW</text></svg></div>
+    </div>
+  </section>
+  <section class="illus-section">
+    <h2>Product Illustration</h2>
+    <div class="illus-wrap">
+      <div class="illus-svg-panel"><svg viewBox="0 0 520 380" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="ig" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24,0L0,0L0,24" fill="none" stroke="#0c1630" stroke-width="0.5"/></pattern></defs><rect width="520" height="380" fill="#060c1b"/><rect width="520" height="380" fill="url(#ig)" opacity="0.6"/><polygon points="203.2,298.9 205.0,299.9 205.0,193.5 203.2,192.5" fill="#808694" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><polygon points="205.0,299.9 204.5,300.2 204.5,193.8 205.0,193.5" fill="#505660" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><ellipse cx="204.1" cy="193.0" rx="1.0" ry="0.3" fill="#b0b6c2" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><polygon points="215.8,247.9 226.4,254.1 199.3,269.8 188.6,263.6" fill="#cdd2da" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="215.8,253.5 226.4,259.7 226.4,254.1 215.8,247.9" fill="#9aa0ae" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="226.4,259.7 199.3,275.4 199.3,269.8 226.4,254.1" fill="#626876" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="230.3,242.9 248.7,253.5 227.4,265.8 209.0,255.2" fill="#f2eedf" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="230.3,253.0 248.7,263.6 248.7,253.5 230.3,242.9" fill="#c4c0ae" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="248.7,263.6 227.4,275.9 227.4,265.8 248.7,253.5" fill="#8c8a80" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="232.2,179.0 275.9,204.2 246.8,221.0 203.1,195.8" fill="#1e3468" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="232.2,180.2 275.9,205.4 275.9,204.2 232.2,179.0" fill="#101e40" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="275.9,205.4 246.8,222.2 246.8,221.0 275.9,204.2" fill="#080e22" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="232.2,202.6 254.5,215.4 228.4,230.6 206.1,217.7" fill="#f2eedf" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="232.2,236.2 254.5,249.0 254.5,215.4 232.2,202.6" fill="#c4c0ae" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="254.5,249.0 228.4,264.2 228.4,230.6 254.5,215.4" fill="#8c8a80" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="232.2,200.3 255.5,213.8 228.4,229.4 205.1,216.0" fill="#cdd2da" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="232.2,202.6 255.5,216.0 255.5,213.8 232.2,200.3" fill="#9aa0ae" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="255.5,216.0 228.4,231.7 228.4,229.4 255.5,213.8" fill="#626876" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="234.2,264.2 278.8,289.9 245.8,309.0 201.2,283.2" fill="#2c303c" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="234.2,281.0 278.8,306.7 278.8,289.9 234.2,264.2" fill="#1c2030" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="278.8,306.7 245.8,325.8 245.8,309.0 278.8,289.9" fill="#0c1020" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="233.3,281.6 235.1,282.6 235.1,176.2 233.3,175.2" fill="#808694" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><polygon points="235.1,282.6 234.6,282.8 234.6,176.4 235.1,176.2" fill="#505660" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><ellipse cx="234.2" cy="175.7" rx="1.0" ry="0.3" fill="#b0b6c2" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><polygon points="240.6,268.3 245.9,271.4 245.7,271.5 240.3,268.4" fill="#2060b0" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="240.6,275.0 245.9,278.1 245.9,271.4 240.6,268.3" fill="#103880" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="245.9,278.1 245.7,278.2 245.7,271.5 245.9,271.4" fill="#081840" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="241.0,264.7 242.9,265.8 242.9,262.5 241.0,261.4" fill="#9aa0ae" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><polygon points="242.9,265.8 242.4,266.1 242.4,262.8 242.9,262.5" fill="#626876" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><ellipse cx="241.9" cy="261.9" rx="1.1" ry="0.3" fill="#cdd2da" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><polygon points="243.4,262.2 252.1,267.2 249.2,268.9 240.5,263.9" fill="#2c303c" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="243.4,274.5 252.1,279.6 252.1,267.2 243.4,262.2" fill="#1c2030" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="252.1,279.6 249.2,281.2 249.2,268.9 252.1,267.2" fill="#0c1020" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="245.9,323.6 247.7,324.6 247.7,218.2 245.9,217.2" fill="#808694" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><polygon points="247.7,324.6 247.2,324.8 247.2,218.4 247.7,218.2" fill="#505660" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><ellipse cx="246.8" cy="217.7" rx="1.0" ry="0.3" fill="#b0b6c2" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><polygon points="243.2,268.2 260.2,278.0 260.2,235.4 243.2,225.6" fill="#c4c0ae" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><polygon points="242.8,225.3 260.7,235.7 260.7,233.4 242.8,223.1" fill="#9aa0ae" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><polygon points="251.0,222.2 252.5,223.1 252.5,207.4 251.0,206.5" fill="#808694" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><polygon points="242.5,206.9 261.0,217.6 261.0,216.6 242.5,205.9" fill="#808694" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><polygon points="260.2,278.0 256.0,280.4 256.0,237.9 260.2,235.4" fill="#8c8a80" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><polygon points="260.7,235.7 256.2,238.3 256.2,236.0 260.7,233.4" fill="#626876" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><polygon points="252.5,223.1 252.1,223.3 252.1,207.7 252.5,207.4" fill="#505660" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><polygon points="261.0,217.6 256.3,220.2 256.3,219.2 261.0,216.6" fill="#505660" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><ellipse cx="251.7" cy="230.5" rx="9.8" ry="2.9" fill="#f2eedf" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><ellipse cx="251.7" cy="228.3" rx="10.4" ry="3.1" fill="#cdd2da" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><ellipse cx="251.7" cy="207.0" rx="0.9" ry="0.3" fill="#b0b6c2" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><ellipse cx="251.7" cy="211.2" rx="10.6" ry="3.2" fill="#b0b6c2" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><polygon points="260.8,298.4 262.1,299.2 262.1,249.9 260.8,249.2" fill="#808694" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><polygon points="261.7,252.0 262.9,252.6 245.4,262.7 244.3,262.0" fill="#b0b6c2" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="261.7,253.3 262.9,254.0 262.9,252.6 261.7,252.0" fill="#808694" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="262.9,254.0 245.4,264.0 245.4,262.7 262.9,252.6" fill="#505660" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="262.1,299.2 261.8,299.4 261.8,250.1 262.1,249.9" fill="#505660" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><ellipse cx="261.4" cy="249.5" rx="0.8" ry="0.2" fill="#b0b6c2" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><polygon points="276.0,306.2 277.7,307.2 277.7,200.8 276.0,199.8" fill="#808694" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><polygon points="277.7,307.2 277.3,307.5 277.3,201.1 277.7,200.8" fill="#505660" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><ellipse cx="276.9" cy="200.3" rx="1.0" ry="0.3" fill="#b0b6c2" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/></svg></div>
+      <div class="illus-labels-panel">
+        <div class="illus-product-cat">SYS-01  ·  Multi-Species Feeding Station</div>
+        <div class="il-callout"><span class="il-num" style="background:#0088ff">1</span><span class="il-text">Dry-Feed Hopper (Birds)</span></div><div class="il-callout"><span class="il-num" style="background:#0088ff">2</span><span class="il-text">Bird Trough</span></div><div class="il-callout"><span class="il-num" style="background:#00cc88">3</span><span class="il-text">Aqua-Feed Hopper (Fish)</span></div><div class="il-callout"><span class="il-num" style="background:#00cc88">4</span><span class="il-text">Pellet Broadcaster Disc</span></div><div class="il-callout"><span class="il-num" style="background:#ff8c00">5</span><span class="il-text">Water Dispenser Arm</span></div><div class="il-callout"><span class="il-num" style="background:#ff8c00">6</span><span class="il-text">Solar Array</span></div><div class="il-callout"><span class="il-num" style="background:#cc44ff">7</span><span class="il-text">Touchscreen Control</span></div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <div class="grid grid-2">
+    <section>
+      <h2><span class="section-num">01</span> Industrial Design Brief</h2>
+      <div class="panel">
+        <div class="brief-grid">
+          <div class="brief-row"><span class="brief-label">Product</span><span class="brief-value">Famtech Feedpro</span></div>
+          <div class="brief-row"><span class="brief-label">Category</span><span class="brief-value">FEEDER</span></div>
+          <div class="brief-row"><span class="brief-label">Role</span><span class="brief-value">Multi-Species Auto-Dispensing</span></div>
+          <div class="brief-row"><span class="brief-label">Target User</span><span class="brief-value">Livestock Managers</span></div>
+          <div class="brief-row"><span class="brief-label">Environment</span><span class="brief-value">Global</span></div>
+          <div class="brief-row"><span class="brief-label">Form Factor</span><span class="brief-value">Multi-Bay Feeding Station</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="section-num">02</span> Product Specification</h2>
+      <div class="panel">
+        <table class="spec-table">
+          <tr><th>Power System</th><td>Solar Primary + Mains Backup</td></tr><tr><th>Species</th><td>Poultry, Birds, Fish, Aquaculture</td></tr>
+          <tr><th>Battery</th><td>12V Backup SLA</td></tr>
+          <tr><th>Runtime</th><td>Continuous</td></tr>
+          <tr><th>Connectivity</th><td>Wi-Fi 6, LoRa, MQTT Cloud</td></tr>
+          <tr><th>Sensor Suite</th><td>4× Load Cells, Flow Meter, Hopper Level</td></tr>
+          <tr><th>Ingress Protection</th><td>IP65 (waterproof)</td></tr>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <div class="grid grid-3">
+    <section>
+      <h2><span class="section-num">03</span> Dimensions</h2>
+      <div class="panel">
+        <table class="spec-table">
+          <tr><th>L × W × H</th><td>960 × 680 × 1950 mm</td></tr>
+          <tr><th>Ground Clearance</th><td>120 mm</td></tr>
+        </table>
+      </div>
+    </section>
+    <section>
+      <h2><span class="section-num">06</span> Mechanical Architecture</h2>
+      <div class="panel"><p>Dual-hopper system: left = dry-feed auger (poultry/birds), right = aqua-pellet cylinder + spinning broadcaster disc; independent water dispenser arm with flow meter</p></div>
+    </section>
+    <section>
+      <h2><span class="section-num">07</span> Materials & Finishes</h2>
+      <div class="panel"><p>IP65 food-grade HDPE hoppers, 316L stainless steel trough and water arm, powder-coated carbon steel frame, UV-stable polycarbonate inspection windows</p></div>
+    </section>
+  </div>
+
+  <section>
+    <h2><span class="section-num">05</span> Component Map</h2>
+    <div class="panel">
+      <div class="comp-grid"><span class="comp-chip">Dry-Feed Hopper (Birds)</span><span class="comp-chip">Auger Drive + Bird Trough</span><span class="comp-chip">Aqua-Feed Hopper (Fish)</span><span class="comp-chip">Pellet Broadcaster Disc</span><span class="comp-chip">Water Dispenser Arm</span><span class="comp-chip">Flow Meter</span><span class="comp-chip">Solar Panel Array</span><span class="comp-chip">Load Cell Platform</span><span class="comp-chip">Touchscreen Control</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="section-num">08</span> Fusion Build Sequence</h2>
+    <div class="panel">
+      <ul class="fusion-list"><li>Frame_Uprights → Rail_Structure</li><li>Battery_Bay_Housing</li><li>Dry_Feed_Hopper_Upper → Auger_Tube</li><li>Bird_Trough_Body</li><li>Aqua_Feed_Hopper → Broadcaster_Disc</li><li>Water_Vertical_Pipe → Water_Horizontal_Arm → Dispenser_Nozzle</li><li>Solar_Panel_Array</li><li>Control_Module_Body → Touchscreen_Display</li><li>Load_Cell_Mounts</li></ul>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="section-num">09</span> Rendering Instructions</h2>
+    <div class="panel"><p><strong>Style:</strong> Premium industrial PBR, dark studio background, realistic shadows &amp; reflections.</p><p><strong>Required Views:</strong> Front 3/4 Hero</p></div>
+  </section>
+
+  <section>
+    <h2><span class="section-num">10</span> Annotation / Callout List</h2>
+    <div class="panel"><div class="ann-list"><span class="ann-tag">Dry-Feed Hopper Lid</span><span class="ann-tag">Aqua-Feed Cylinder</span><span class="ann-tag">Pellet Broadcaster Disc</span><span class="ann-tag">Water Nozzle Valve</span><span class="ann-tag">Bird Trough</span><span class="ann-tag">Touchscreen Control Module</span><span class="ann-tag">Solar Panel Array</span></div></div>
+  </section>
+
+  <section>
+    <div class="risk-panel">
+      <h2><span class="section-num" style="background:rgba(239,68,68,0.15);color:#ef4444;">11</span> Engineering Risks & Unknowns</h2>
+      <ul class="risk-list"><li>Aqua-pellet moisture absorption blocking outlet</li><li>Broadcaster disc clogging with wet feed in high humidity</li><li>Water arm freezing in sub-zero deployment</li><li>Algae growth in water dispenser tubing</li><li>Bird nesting on trough perch rod obstructing sensors</li></ul>
+    </div>
+  </section>
+
+  <div class="grid grid-2">
+    <section>
+      <h2><span class="section-num">12</span> Manufacturing Notes</h2>
+      <div class="panel"><p>HDPE hoppers rotomolded (food-grade), 316L stainless trough and water circuits, powder-coat steel frame, ASA weather-resistant control enclosure, IP65 cable glands on all penetrations</p></div>
+    </section>
+    <section>
+      <h2><span class="section-num">13</span> Maintenance & Serviceability</h2>
+      <div class="panel"><p>Feed bridging in humid climates. HDPE hoppers rotomolded (food-grade), 316L stainless trough and water circuits, powder-coat steel frame, ASA weather-resistant control enclosure, IP65 cable glands on all penetrations</p></div>
+    </section>
+  </div>
+
+  <footer class="site-footer">
+    <span class="footer-brand">Famtech Industrial Design System &copy; 2026 &mdash; Internal Confidential</span>
+    <nav class="product-footer-nav">
+      <a href="05_soilnode.html" class="prev">Soilnode</a>
+      <a href="07_herdtag.html" class="next">Herdtag</a>
+    </nav>
+  </footer>
+</div>
+  <script>
+    (function(){
+      var bar = document.getElementById('read-progress');
+      if (!bar) return;
+      function upd() {
+        var h = document.documentElement.scrollHeight - window.innerHeight;
+        bar.style.width = (h > 0 ? (window.scrollY / h * 100) : 0) + '%';
+      }
+      window.addEventListener('scroll', upd, {passive:true});
+      upd();
+    })();
+  </script>
+</body>
+</html>

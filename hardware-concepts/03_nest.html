@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Famtech Nest — Famtech Hardware</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.1.1/model-viewer.min.js"></script>
+
+  <style>
+    /* ── Hotspot annotations ─────────────────────────────── */
+    button[slot^="hotspot-"] {
+      background: rgba(0,120,255,0.85);
+      border: 2px solid #44aaff;
+      border-radius: 50%;
+      width: 20px; height: 20px;
+      cursor: pointer; padding: 0;
+      position: relative;
+      transition: background 0.15s, transform 0.15s;
+      box-shadow: 0 0 8px rgba(0,120,255,0.5);
+    }
+    button[slot^="hotspot-"]:hover { transform: scale(1.25); background: rgba(0,160,255,0.95); }
+    button[slot^="hotspot-"]:not([data-visible]) {
+      background: transparent; border-color: transparent; pointer-events: none;
+    }
+    button[slot^="hotspot-"]:not([data-visible]) .hs-label { display: none; }
+    .hs-dot {
+      width: 6px; height: 6px; background: #fff; border-radius: 50%;
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    }
+    .hs-label {
+      background: rgba(4,12,34,0.96);
+      border: 1px solid rgba(0,120,255,0.5);
+      border-left: 3px solid #0088ff;
+      border-radius: 0 5px 5px 0;
+      color: #a8d0ff;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px; font-weight: 500;
+      padding: 4px 12px 4px 8px;
+      position: absolute; left: 26px; top: 50%;
+      transform: translateY(-50%);
+      white-space: nowrap; pointer-events: none;
+      letter-spacing: 0.04em;
+    }
+    /* ── 2D Technical Views ──────────────────────────────── */
+    .views-section { margin: 28px 0 0; }
+    .views-section h2 { margin-bottom: 14px; }
+    .views-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .view-card {
+      background: #060c1b;
+      border: 1px solid #1b2f5e;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .view-card svg { display: block; width: 100%; height: auto; }
+    .view-label-bar {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px; letter-spacing: 0.14em;
+      color: #3355aa; text-align: center;
+      padding: 5px 0 4px;
+      background: #030710;
+      border-bottom: 1px solid #0e1e44;
+      text-transform: uppercase;
+    }
+  </style>
+
+  <style id="illus-css">
+    .illus-section { margin: 28px 0 0; }
+    .illus-section h2 { margin-bottom: 14px; }
+    .illus-wrap {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 0;
+      border: 1px solid #1b2f5e;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #060c1b;
+    }
+    .illus-svg-panel svg { display: block; width: 100%; height: auto; }
+    .illus-labels-panel {
+      background: #080e20;
+      border-left: 1px solid #1b2f5e;
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .illus-product-cat {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      color: #2a4888;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .il-callout {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 0;
+      border-bottom: 1px solid #0e1a36;
+    }
+    .il-callout:last-child { border-bottom: none; }
+    .il-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .il-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      color: #8aaccc;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body>
+  <div id="read-progress"></div>
+<nav class="topnav">
+  <a href="index.html" class="nav-back">← Catalog</a>
+  <span class="nav-brand">Famtech Hardware System · INF-01</span>
+  <div class="nav-product-jump"><a href="02_scout.html" class="nav-jump-btn prev">Scout</a><a href="04_watchtower.html" class="nav-jump-btn next">Watchtower</a></div>
+</nav>
+<div class="container">
+  <div class="hero">
+    <div>
+      <div class="hero-meta">
+        <span class="badge">INF-01</span>
+        <span class="badge badge-neutral">IP67</span>
+      </div>
+      <h1>Famtech Nest</h1>
+      <p class="hero-desc">Autonomous drone docking, battery swapping, and charging station for unattended field operations.</p>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-chip"><span class="stat-label">Battery</span><span class="stat-value">48V 100Ah LiFePO4</span></div>
+      <div class="stat-chip"><span class="stat-label">Runtime</span><span class="stat-value">Continuous</span></div>
+      <div class="stat-chip"><span class="stat-label">Power</span><span class="stat-value">Solar + Mains</span></div>
+    </div>
+  </div>
+
+  <section>
+    <h2>360° Interactive View</h2>
+    <div class="viewer-panel">
+      <model-viewer camera-controls auto-rotate auto-rotate-delay="800" rotation-per-second="25deg" environment-image="neutral" skybox-height="2m" exposure="1.35" shadow-intensity="2.2" shadow-softness="0.75" tone-mapping="aces" interaction-prompt="auto" interaction-prompt-threshold="500" min-camera-orbit="auto 5deg 0.4m" max-camera-orbit="auto 175deg 20m" camera-orbit="10deg 60deg auto" src="models/nest.glb">
+        <div slot="poster" class="viewer-poster">
+          <span class="icon">⬡</span>
+          <span>Loading 3D model…</span>
+        </div>
+            <button slot="hotspot-0" data-position="0.000 0.560 0.000" data-normal="0.0 1.0 0.0" data-visibility-attribute="visible"><div class="hs-dot"></div><div class="hs-label">Drone Landing Pad</div></button>
+      <button slot="hotspot-1" data-position="-0.305 0.755 0.000" data-normal="0.0 1.0 0.0" data-visibility-attribute="visible"><div class="hs-dot"></div><div class="hs-label">Retractable Roof</div></button>
+      <button slot="hotspot-2" data-position="0.660 0.020 0.000" data-normal="1.0 0.0 0.0" data-visibility-attribute="visible"><div class="hs-dot"></div><div class="hs-label">HVAC Unit</div></button>
+      <button slot="hotspot-3" data-position="-0.400 -0.100 0.000" data-normal="-1.0 0.0 0.0" data-visibility-attribute="visible"><div class="hs-dot"></div><div class="hs-label">Battery Magazine</div></button>
+    </model-viewer>
+    
+      <div class="viewer-hint">
+        <span class="viewer-hint-pill"><span class="icon">⟳</span>&nbsp;Drag to rotate</span>
+        <span class="viewer-hint-pill"><span class="icon">⊕</span>&nbsp;Scroll to zoom</span>
+        <span class="viewer-hint-pill"><span class="icon">●</span>&nbsp;Tap dots for parts</span>
+      </div>
+</div>
+  </section>
+  <section class="views-section">
+    <h2>2D Technical Views</h2>
+    <div class="views-grid">
+      <div class="view-card"><div class="view-label-bar">Front View</div><svg viewBox="0 0 260 192" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="g" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20,0L0,0L0,20" fill="none" stroke="#0d1a38" stroke-width=".6"/></pattern></defs><rect width="260" height="192" fill="#060c1b"/><rect width="260" height="192" fill="url(#g)"/><line x1="130.0" y1="10.0" x2="130.0" y2="182.0" stroke="#1a3060" stroke-width="0.6" stroke-dasharray="6,3,2,3"/><rect x="55.0" y="40.0" width="150.0" height="120.0" fill="rgba(18,56,130,0.22)" stroke="#2a7ad9" stroke-width="1.2" rx="1"/><rect x="55.0" y="28.0" width="73.0" height="14.0" fill="rgba(30,100,200,0.18)" stroke="#00cc88" stroke-width="1.2" rx="1"/><rect x="132.0" y="28.0" width="73.0" height="14.0" fill="rgba(30,100,200,0.18)" stroke="#00cc88" stroke-width="1.2" rx="1"/><rect x="75.0" y="14.0" width="110.0" height="16.0" fill="rgba(8,20,60,0.55)" stroke="#00cc88" stroke-width="1.2" rx="1"/><circle cx="130.0" cy="22.0" r="10.0" fill="none" stroke="#ff8c00" stroke-width="1.2"/><rect x="55.0" y="50.0" width="30.0" height="80.0" fill="rgba(8,20,60,0.55)" stroke="#1a5aaa" stroke-width="1.0" rx="1"/><rect x="175.0" y="60.0" width="10.0" height="50.0" fill="rgba(8,20,60,0.55)" stroke="#1a5aaa" stroke-width="1.2" rx="1"/><line x1="50.0" y1="160.0" x2="210.0" y2="160.0" stroke="#1a5aaa" stroke-width="1.0"/><line x1="54" y1="160.0" x2="48" y2="168.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="64" y1="160.0" x2="58" y2="168.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="74" y1="160.0" x2="68" y2="168.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="84" y1="160.0" x2="78" y2="168.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="94" y1="160.0" x2="88" y2="168.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="104" y1="160.0" x2="98" y2="168.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="114" y1="160.0" x2="108" y2="168.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="124" y1="160.0" x2="118" y2="168.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="134" y1="160.0" x2="128" y2="168.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="144" y1="160.0" x2="138" y2="168.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="154" y1="160.0" x2="148" y2="168.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="164" y1="160.0" x2="158" y2="168.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="174" y1="160.0" x2="168" y2="168.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="184" y1="160.0" x2="178" y2="168.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="194" y1="160.0" x2="188" y2="168.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="204" y1="160.0" x2="198" y2="168.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="55.0" y1="165.0" x2="55.0" y2="156.0" stroke="#3a6aaa" stroke-width="0.5"/><line x1="205.0" y1="165.0" x2="205.0" y2="156.0" stroke="#3a6aaa" stroke-width="0.5"/><line x1="55.0" y1="156.0" x2="205.0" y2="156.0" stroke="#3a6aaa" stroke-width="0.8"/><text x="130.0" y="153.0" text-anchor="middle" font-family="monospace" font-size="7" fill="#3a6aaa">1200mm</text><line x1="215.0" y1="40.0" x2="224.0" y2="40.0" stroke="#3a6aaa" stroke-width="0.5"/><line x1="215.0" y1="160.0" x2="224.0" y2="160.0" stroke="#3a6aaa" stroke-width="0.5"/><line x1="224.0" y1="40.0" x2="224.0" y2="160.0" stroke="#3a6aaa" stroke-width="0.8"/><text x="228.0" y="103.0" text-anchor="start" font-family="monospace" font-size="7" fill="#3a6aaa">1400mm</text><line x1="28.0" y1="25.0" x2="130.0" y2="22.0" stroke="#ff8c00" stroke-width="0.8" stroke-dasharray="3,2"/><circle cx="28.0" cy="25.0" r="7.5" fill="#ff8c00"/><text x="28.0" y="28.5" text-anchor="middle" font-family="monospace" font-size="8" fill="#fff" font-weight="bold">1</text><line x1="28.0" y1="55.0" x2="92.0" y2="28.0" stroke="#ff8c00" stroke-width="0.8" stroke-dasharray="3,2"/><circle cx="28.0" cy="55.0" r="7.5" fill="#ff8c00"/><text x="28.0" y="58.5" text-anchor="middle" font-family="monospace" font-size="8" fill="#fff" font-weight="bold">2</text><line x1="28.0" y1="85.0" x2="179.0" y2="85.0" stroke="#ff8c00" stroke-width="0.8" stroke-dasharray="3,2"/><circle cx="28.0" cy="85.0" r="7.5" fill="#ff8c00"/><text x="28.0" y="88.5" text-anchor="middle" font-family="monospace" font-size="8" fill="#fff" font-weight="bold">3</text><line x1="28.0" y1="115.0" x2="70.0" y2="90.0" stroke="#ff8c00" stroke-width="0.8" stroke-dasharray="3,2"/><circle cx="28.0" cy="115.0" r="7.5" fill="#ff8c00"/><text x="28.0" y="118.5" text-anchor="middle" font-family="monospace" font-size="8" fill="#fff" font-weight="bold">4</text><text x="130.0" y="185.0" text-anchor="middle" font-family="monospace" font-size="7" fill="#3a6aaa">FRONT VIEW</text></svg></div>
+      <div class="view-card"><div class="view-label-bar">Side View</div><svg viewBox="0 0 260 192" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="g" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20,0L0,0L0,20" fill="none" stroke="#0d1a38" stroke-width=".6"/></pattern></defs><rect width="260" height="192" fill="#060c1b"/><rect width="260" height="192" fill="url(#g)"/><rect x="72.0" y="40.0" width="116.0" height="120.0" fill="rgba(18,56,130,0.22)" stroke="#2a7ad9" stroke-width="1.2" rx="1"/><rect x="72.0" y="28.0" width="56.0" height="14.0" fill="rgba(30,100,200,0.18)" stroke="#00cc88" stroke-width="1.2" rx="1"/><rect x="132.0" y="28.0" width="56.0" height="14.0" fill="rgba(30,100,200,0.18)" stroke="#00cc88" stroke-width="1.2" rx="1"/><rect x="88.0" y="14.0" width="84.0" height="16.0" fill="rgba(8,20,60,0.55)" stroke="#00cc88" stroke-width="1.2" rx="1"/><rect x="175.0" y="60.0" width="8.0" height="50.0" fill="rgba(8,20,60,0.55)" stroke="#1a5aaa" stroke-width="1.2" rx="1"/><line x1="62.0" y1="160.0" x2="198.0" y2="160.0" stroke="#1a5aaa" stroke-width="1.0"/><line x1="66" y1="160.0" x2="60" y2="168.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="76" y1="160.0" x2="70" y2="168.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="86" y1="160.0" x2="80" y2="168.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="96" y1="160.0" x2="90" y2="168.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="106" y1="160.0" x2="100" y2="168.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="116" y1="160.0" x2="110" y2="168.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="126" y1="160.0" x2="120" y2="168.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="136" y1="160.0" x2="130" y2="168.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="146" y1="160.0" x2="140" y2="168.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="156" y1="160.0" x2="150" y2="168.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="166" y1="160.0" x2="160" y2="168.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="176" y1="160.0" x2="170" y2="168.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="186" y1="160.0" x2="180" y2="168.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="196" y1="160.0" x2="190" y2="168.0" stroke="#1a5aaa" stroke-width="0.5"/><line x1="215.0" y1="40.0" x2="224.0" y2="40.0" stroke="#3a6aaa" stroke-width="0.5"/><line x1="215.0" y1="160.0" x2="224.0" y2="160.0" stroke="#3a6aaa" stroke-width="0.5"/><line x1="224.0" y1="40.0" x2="224.0" y2="160.0" stroke="#3a6aaa" stroke-width="0.8"/><text x="228.0" y="103.0" text-anchor="start" font-family="monospace" font-size="7" fill="#3a6aaa">1400mm</text><text x="130.0" y="185.0" text-anchor="middle" font-family="monospace" font-size="7" fill="#3a6aaa">SIDE VIEW</text></svg></div>
+      <div class="view-card"><div class="view-label-bar">Top View</div><svg viewBox="0 0 260 192" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="g" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20,0L0,0L0,20" fill="none" stroke="#0d1a38" stroke-width=".6"/></pattern></defs><rect width="260" height="192" fill="#060c1b"/><rect width="260" height="192" fill="url(#g)"/><rect x="55.0" y="40.0" width="150.0" height="112.0" fill="rgba(18,56,130,0.22)" stroke="#2a7ad9" stroke-width="1.2" rx="1"/><rect x="75.0" y="52.0" width="110.0" height="80.0" fill="rgba(8,20,60,0.55)" stroke="#00cc88" stroke-width="1.2" rx="1"/><circle cx="130.0" cy="92.0" r="18.0" fill="none" stroke="#ff8c00" stroke-width="1.2"/><line x1="112.0" y1="92.0" x2="148.0" y2="92.0" stroke="#ff8c00" stroke-width="0.8"/><line x1="130.0" y1="74.0" x2="130.0" y2="110.0" stroke="#ff8c00" stroke-width="0.8"/><line x1="55.0" y1="20.0" x2="55.0" y2="11.0" stroke="#3a6aaa" stroke-width="0.5"/><line x1="205.0" y1="20.0" x2="205.0" y2="11.0" stroke="#3a6aaa" stroke-width="0.5"/><line x1="55.0" y1="11.0" x2="205.0" y2="11.0" stroke="#3a6aaa" stroke-width="0.8"/><text x="130.0" y="8.0" text-anchor="middle" font-family="monospace" font-size="7" fill="#3a6aaa">1200mm</text><text x="130.0" y="185.0" text-anchor="middle" font-family="monospace" font-size="7" fill="#3a6aaa">TOP VIEW</text></svg></div>
+    </div>
+  </section>
+  <section class="illus-section">
+    <h2>Product Illustration</h2>
+    <div class="illus-wrap">
+      <div class="illus-svg-panel"><svg viewBox="0 0 520 380" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="ig" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24,0L0,0L0,24" fill="none" stroke="#0c1630" stroke-width="0.5"/></pattern></defs><rect width="520" height="380" fill="#060c1b"/><rect width="520" height="380" fill="url(#ig)" opacity="0.6"/><polygon points="161.7,231.0 232.4,271.8 230.0,273.2 159.3,232.4" fill="#cdd2da" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="161.7,319.4 232.4,360.2 232.4,271.8 161.7,231.0" fill="#9aa0ae" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="232.4,360.2 230.0,361.6 230.0,273.2 232.4,271.8" fill="#626876" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="228.2,194.0 245.9,204.2 197.6,232.1 179.9,221.9" fill="#2c303c" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="228.2,248.4 245.9,258.6 245.9,204.2 228.2,194.0" fill="#1c2030" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="245.9,258.6 197.6,286.5 197.6,232.1 245.9,204.2" fill="#0c1020" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="228.8,200.4 280.6,230.4 263.0,240.6 211.2,210.6" fill="#2c303c" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="228.8,203.2 280.6,233.1 280.6,230.4 228.8,200.4" fill="#1c2030" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="280.6,233.1 263.0,243.3 263.0,240.6 280.6,230.4" fill="#0c1020" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="230.0,280.0 300.7,320.8 230.0,361.6 159.3,320.8" fill="#b0b6c2" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="230.0,286.8 300.7,327.6 300.7,320.8 230.0,280.0" fill="#808694" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="300.7,327.6 230.0,368.4 230.0,361.6 300.7,320.8" fill="#505660" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="230.0,191.6 232.4,193.0 161.7,233.8 159.3,232.4" fill="#cdd2da" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="230.0,280.0 232.4,281.4 232.4,193.0 230.0,191.6" fill="#9aa0ae" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="232.4,281.4 161.7,322.2 161.7,233.8 232.4,193.0" fill="#626876" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="230.0,191.6 300.7,232.4 298.3,233.8 227.6,193.0" fill="#cdd2da" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="230.0,280.0 300.7,320.8 300.7,232.4 230.0,191.6" fill="#9aa0ae" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="300.7,320.8 298.3,322.2 298.3,233.8 300.7,232.4" fill="#626876" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="230.0,207.9 281.8,237.8 230.0,267.8 178.2,237.8" fill="#2c303c" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="230.0,209.3 281.8,239.2 281.8,237.8 230.0,207.9" fill="#1c2030" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="281.8,239.2 230.0,269.1 230.0,267.8 281.8,237.8" fill="#0c1020" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="237.7,202.1 289.5,232.1 222.3,270.8 170.5,240.9" fill="#cdd2da" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="237.7,204.9 289.5,234.8 289.5,232.1 237.7,202.1" fill="#9aa0ae" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="289.5,234.8 222.3,273.5 222.3,270.8 289.5,232.1" fill="#626876" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="263.6,217.1 315.4,247.0 248.3,285.8 196.4,255.9" fill="#cdd2da" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="263.6,219.8 315.4,249.7 315.4,247.0 263.6,217.1" fill="#9aa0ae" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="315.4,249.7 248.3,288.5 248.3,285.8 315.4,247.0" fill="#626876" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="298.3,231.0 300.7,232.4 230.0,273.2 227.6,271.8" fill="#cdd2da" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="298.3,319.4 300.7,320.8 300.7,232.4 298.3,231.0" fill="#9aa0ae" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="300.7,320.8 230.0,361.6 230.0,273.2 300.7,232.4" fill="#626876" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/></svg></div>
+      <div class="illus-labels-panel">
+        <div class="illus-product-cat">INF-01  ·  Drone Docking Station</div>
+        <div class="il-callout"><span class="il-num" style="background:#0088ff">1</span><span class="il-text">Retractable Roof</span></div><div class="il-callout"><span class="il-num" style="background:#00cc88">2</span><span class="il-text">Drone Landing Pad</span></div><div class="il-callout"><span class="il-num" style="background:#ff8c00">3</span><span class="il-text">Battery Magazine</span></div><div class="il-callout"><span class="il-num" style="background:#ff8c00">4</span><span class="il-text">HVAC Unit</span></div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <div class="grid grid-2">
+    <section>
+      <h2><span class="section-num">01</span> Industrial Design Brief</h2>
+      <div class="panel">
+        <div class="brief-grid">
+          <div class="brief-row"><span class="brief-label">Product</span><span class="brief-value">Famtech Nest</span></div>
+          <div class="brief-row"><span class="brief-label">Category</span><span class="brief-value">ROBOT</span></div>
+          <div class="brief-row"><span class="brief-label">Role</span><span class="brief-value">Drone Docking & Charging</span></div>
+          <div class="brief-row"><span class="brief-label">Target User</span><span class="brief-value">Commercial Farms</span></div>
+          <div class="brief-row"><span class="brief-label">Environment</span><span class="brief-value">Africa + Canada</span></div>
+          <div class="brief-row"><span class="brief-label">Form Factor</span><span class="brief-value">Cabinet</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="section-num">02</span> Product Specification</h2>
+      <div class="panel">
+        <table class="spec-table">
+          <tr><th>Power System</th><td>Solar + Mains</td></tr>
+          <tr><th>Battery</th><td>48V 100Ah LiFePO4</td></tr>
+          <tr><th>Runtime</th><td>Continuous</td></tr>
+          <tr><th>Connectivity</th><td>Fiber, 5G, LoRaWAN</td></tr>
+          <tr><th>Sensor Suite</th><td>Weather Station, IR Cameras</td></tr>
+          <tr><th>Ingress Protection</th><td>IP67</td></tr>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <div class="grid grid-3">
+    <section>
+      <h2><span class="section-num">03</span> Dimensions</h2>
+      <div class="panel">
+        <table class="spec-table">
+          <tr><th>L × W × H</th><td>1200 × 1200 × 1400 mm</td></tr>
+          <tr><th>Ground Clearance</th><td>100 mm</td></tr>
+        </table>
+      </div>
+    </section>
+    <section>
+      <h2><span class="section-num">06</span> Mechanical Architecture</h2>
+      <div class="panel"><p>Heavy steel base frame, scissor-lift retractable roof, internal 3-axis swap arm</p></div>
+    </section>
+    <section>
+      <h2><span class="section-num">07</span> Materials & Finishes</h2>
+      <div class="panel"><p>Powder-coated 5052 Al shell, galvanized steel frame, EPDM seals, tempered glass</p></div>
+    </section>
+  </div>
+
+  <section>
+    <h2><span class="section-num">05</span> Component Map</h2>
+    <div class="panel">
+      <div class="comp-grid"><span class="comp-chip">Retractable Roof</span><span class="comp-chip">Landing Pad</span><span class="comp-chip">Robotic Swap Arm</span><span class="comp-chip">Battery Magazine</span><span class="comp-chip">HVAC Unit</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="section-num">08</span> Fusion Build Sequence</h2>
+    <div class="panel">
+      <ul class="fusion-list"><li>Base_Frame</li><li>HVAC_Module</li><li>Swap_Kinematics</li><li>Roof_Actuators</li><li>Outer_Shell</li></ul>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="section-num">09</span> Rendering Instructions</h2>
+    <div class="panel"><p><strong>Style:</strong> Premium industrial PBR, dark studio background, realistic shadows &amp; reflections.</p><p><strong>Required Views:</strong> Closed Hero, Open Roof, Internal Cutaway</p></div>
+  </section>
+
+  <section>
+    <h2><span class="section-num">10</span> Annotation / Callout List</h2>
+    <div class="panel"><div class="ann-list"><span class="ann-tag">Retractable Roof Seam</span><span class="ann-tag">HVAC Vent</span><span class="ann-tag">Drone Landing Pad</span><span class="ann-tag">Battery Magazine</span></div></div>
+  </section>
+
+  <section>
+    <div class="risk-panel">
+      <h2><span class="section-num" style="background:rgba(239,68,68,0.15);color:#ef4444;">11</span> Engineering Risks & Unknowns</h2>
+      <ul class="risk-list"><li>Ice buildup on roof</li><li>Robotic arm misalignment</li><li>Condensation in electronics</li></ul>
+    </div>
+  </section>
+
+  <div class="grid grid-2">
+    <section>
+      <h2><span class="section-num">12</span> Manufacturing Notes</h2>
+      <div class="panel"><p>Sheet metal bending and welding, extruded aluminum framing, waterjet access panels</p></div>
+    </section>
+    <section>
+      <h2><span class="section-num">13</span> Maintenance & Serviceability</h2>
+      <div class="panel"><p>Ice buildup on roof. Sheet metal bending and welding, extruded aluminum framing, waterjet access panels</p></div>
+    </section>
+  </div>
+
+  <footer class="site-footer">
+    <span class="footer-brand">Famtech Industrial Design System &copy; 2026 &mdash; Internal Confidential</span>
+    <nav class="product-footer-nav">
+      <a href="02_scout.html" class="prev">Scout</a>
+      <a href="04_watchtower.html" class="next">Watchtower</a>
+    </nav>
+  </footer>
+</div>
+  <script>
+    (function(){
+      var bar = document.getElementById('read-progress');
+      if (!bar) return;
+      function upd() {
+        var h = document.documentElement.scrollHeight - window.innerHeight;
+        bar.style.width = (h > 0 ? (window.scrollY / h * 100) : 0) + '%';
+      }
+      window.addEventListener('scroll', upd, {passive:true});
+      upd();
+    })();
+  </script>
+</body>
+</html>

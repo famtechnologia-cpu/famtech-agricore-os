@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Famtech Hardware System — Product Catalog</title>
+  <meta name="description" content="Famtech modular farm operating system. 17 specialized hardware systems for precision agriculture, autonomous operations, and livestock management.">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ── index-only overrides ─── */
+    body { overflow-x: hidden; }
+    .topnav-index {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(7,8,13,0.85);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 0 2rem;
+      height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .topnav-index .brand {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--text-3);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .topnav-index .brand span { color: var(--green); }
+    .topnav-index .conf-badge {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: rgba(245,158,11,0.7);
+      border: 1px solid rgba(245,158,11,0.2);
+      border-radius: 999px;
+      padding: 0.2rem 0.65rem;
+      letter-spacing: 0.08em;
+    }
+  </style>
+</head>
+<body>
+  <div id="read-progress"></div>
+
+  <nav class="topnav-index">
+    <span class="brand">Famtech <span>/</span> Hardware System</span>
+    <span class="conf-badge">INTERNAL CONFIDENTIAL · REV 2.0</span>
+  </nav>
+
+  <div class="container">
+
+    <!-- ── CATALOG HEADER ──────────────────────────────────────── -->
+    <header class="catalog-header">
+      <span class="sub">Famtech Industrial Design System · 2026</span>
+      <h1>AgriCore Hardware Catalog</h1>
+      <p>17 specialized hardware systems engineered for precision agriculture, autonomous field operations, aquaculture, and livestock management.</p>
+      <div class="catalog-stats">
+        <div class="catalog-stat">
+          <span class="catalog-stat-value">17</span>
+          <span class="catalog-stat-label">Products</span>
+        </div>
+        <div class="catalog-stat">
+          <span class="catalog-stat-value">08</span>
+          <span class="catalog-stat-label">Categories</span>
+        </div>
+        <div class="catalog-stat">
+          <span class="catalog-stat-value">3D</span>
+          <span class="catalog-stat-label">Interactive Models</span>
+        </div>
+        <div class="catalog-stat">
+          <span class="catalog-stat-value">2026</span>
+          <span class="catalog-stat-label">Target Launch</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- ══ AERIAL SYSTEMS ══════════════════════════════════════════ -->
+    <div class="section-divider">
+      <h3>Aerial Systems</h3>
+      <hr>
+      <span class="div-badge">2 products</span>
+    </div>
+    <div class="grid grid-4">
+
+      <a href="01_spray_x.html" class="product-card">
+        <div class="card-thumb">
+          <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="180" fill="#060c1b"/>
+            <defs>
+              <radialGradient id="sg1" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#10b981" stop-opacity="0.08"/>
+                <stop offset="100%" stop-color="#060c1b" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect width="320" height="180" fill="url(#sg1)"/>
+            <!-- arms -->
+            <line x1="160" y1="90" x2="84"  y2="44"  stroke="#1a3060" stroke-width="9" stroke-linecap="round"/>
+            <line x1="160" y1="90" x2="236" y2="44"  stroke="#1a3060" stroke-width="9" stroke-linecap="round"/>
+            <line x1="160" y1="90" x2="84"  y2="136" stroke="#1a3060" stroke-width="9" stroke-linecap="round"/>
+            <line x1="160" y1="90" x2="236" y2="136" stroke="#1a3060" stroke-width="9" stroke-linecap="round"/>
+            <!-- rotor discs -->
+            <ellipse cx="84"  cy="44"  rx="26" ry="7" fill="none" stroke="#10b981" stroke-width="1.5" opacity="0.65"/>
+            <ellipse cx="236" cy="44"  rx="26" ry="7" fill="none" stroke="#10b981" stroke-width="1.5" opacity="0.65"/>
+            <ellipse cx="84"  cy="136" rx="26" ry="7" fill="none" stroke="#10b981" stroke-width="1.5" opacity="0.65"/>
+            <ellipse cx="236" cy="136" rx="26" ry="7" fill="none" stroke="#10b981" stroke-width="1.5" opacity="0.65"/>
+            <!-- motor hubs -->
+            <circle cx="84"  cy="44"  r="7"  fill="#0f2040" stroke="#10b981" stroke-width="1"/>
+            <circle cx="236" cy="44"  r="7"  fill="#0f2040" stroke="#10b981" stroke-width="1"/>
+            <circle cx="84"  cy="136" r="7"  fill="#0f2040" stroke="#10b981" stroke-width="1"/>
+            <circle cx="236" cy="136" r="7"  fill="#0f2040" stroke="#10b981" stroke-width="1"/>
+            <!-- body -->
+            <rect x="142" y="72" width="36" height="36" rx="7" fill="#112038"/>
+            <rect x="148" y="78" width="24" height="12" rx="3" fill="#0a1628"/>
+            <!-- tank -->
+            <rect x="150" y="94" width="20" height="10" rx="2" fill="#3b82f6" opacity="0.6"/>
+            <!-- nozzle -->
+            <line x1="160" y1="104" x2="160" y2="115" stroke="#3b82f6" stroke-width="2"/>
+            <circle cx="160" cy="117" r="3" fill="#3b82f6" opacity="0.9"/>
+            <!-- LED -->
+            <circle cx="160" cy="79" r="2.5" fill="#10b981"/>
+          </svg>
+        </div>
+        <div class="card-body">
+          <span class="badge card-badge">UAV-01</span>
+          <p class="card-name">Famtech Spray X</p>
+          <p class="card-desc">Precision agricultural sprayer drone with 20 L tank, variable-rate nozzles, and RTK positioning.</p>
+          <span class="card-arrow">View Specification <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="display:inline;vertical-align:middle"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </a>
+
+      <a href="02_scout.html" class="product-card">
+        <div class="card-thumb">
+          <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="180" fill="#060c1b"/>
+            <defs>
+              <radialGradient id="sg2" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.07"/>
+                <stop offset="100%" stop-color="#060c1b" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect width="320" height="180" fill="url(#sg2)"/>
+            <!-- arms - narrower/longer -->
+            <line x1="160" y1="88" x2="78"  y2="42"  stroke="#1a3060" stroke-width="7" stroke-linecap="round"/>
+            <line x1="160" y1="88" x2="242" y2="42"  stroke="#1a3060" stroke-width="7" stroke-linecap="round"/>
+            <line x1="160" y1="88" x2="78"  y2="134" stroke="#1a3060" stroke-width="7" stroke-linecap="round"/>
+            <line x1="160" y1="88" x2="242" y2="134" stroke="#1a3060" stroke-width="7" stroke-linecap="round"/>
+            <!-- rotor discs -->
+            <ellipse cx="78"  cy="42"  rx="24" ry="7" fill="none" stroke="#3b82f6" stroke-width="1.5" opacity="0.7"/>
+            <ellipse cx="242" cy="42"  rx="24" ry="7" fill="none" stroke="#3b82f6" stroke-width="1.5" opacity="0.7"/>
+            <ellipse cx="78"  cy="134" rx="24" ry="7" fill="none" stroke="#3b82f6" stroke-width="1.5" opacity="0.7"/>
+            <ellipse cx="242" cy="134" rx="24" ry="7" fill="none" stroke="#3b82f6" stroke-width="1.5" opacity="0.7"/>
+            <!-- motor hubs -->
+            <circle cx="78"  cy="42"  r="6" fill="#0f2040" stroke="#3b82f6" stroke-width="1"/>
+            <circle cx="242" cy="42"  r="6" fill="#0f2040" stroke="#3b82f6" stroke-width="1"/>
+            <circle cx="78"  cy="134" r="6" fill="#0f2040" stroke="#3b82f6" stroke-width="1"/>
+            <circle cx="242" cy="134" r="6" fill="#0f2040" stroke="#3b82f6" stroke-width="1"/>
+            <!-- body -->
+            <rect x="144" y="74" width="32" height="28" rx="6" fill="#112038"/>
+            <!-- camera gimbal -->
+            <rect x="152" y="102" width="16" height="10" rx="4" fill="#0c1830"/>
+            <circle cx="160" cy="107" r="5" fill="#0a1225" stroke="#3b82f6" stroke-width="1.2"/>
+            <circle cx="160" cy="107" r="2" fill="#3b82f6" opacity="0.8"/>
+            <!-- multispectral lens array -->
+            <rect x="146" y="76" width="28" height="6" rx="2" fill="#0a1828"/>
+            <circle cx="152" cy="79" r="2" fill="#10b981" opacity="0.7"/>
+            <circle cx="160" cy="79" r="2" fill="#3b82f6" opacity="0.7"/>
+            <circle cx="168" cy="79" r="2" fill="#8b5cf6" opacity="0.7"/>
+          </svg>
+        </div>
+        <div class="card-body">
+          <span class="badge badge-blue card-badge">UAV-02</span>
+          <p class="card-name">Famtech Scout</p>
+          <p class="card-desc">Multispectral crop scouting drone with 5-band sensor array, NDVI mapping, and 45-min flight time.</p>
+          <span class="card-arrow">View Specification <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="display:inline;vertical-align:middle"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- ══ FIELD INFRASTRUCTURE ══════════════════════════════════ -->
+    <div class="section-divider">
+      <h3>Field Infrastructure</h3>
+      <hr>
+      <span class="div-badge">4 products</span>
+    </div>
+    <div class="grid grid-4">
+
+      <a href="03_nest.html" class="product-card">
+        <div class="card-thumb">
+          <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="180" fill="#060c1b"/>
+            <!-- landing pad top-down view -->
+            <rect x="70" y="34" width="180" height="112" rx="12" fill="#0d1a30" stroke="#1a3060" stroke-width="1.5"/>
+            <!-- H pattern -->
+            <rect x="88"  y="58" width="20" height="64" rx="3" fill="#162848"/>
+            <rect x="212" y="58" width="20" height="64" rx="3" fill="#162848"/>
+            <rect x="88"  y="83" width="144" height="14" rx="3" fill="#162848"/>
+            <!-- corner charging pads -->
+            <rect x="78"  y="42"  width="22" height="16" rx="3" fill="#10b981" opacity="0.3"/>
+            <rect x="220" y="42"  width="22" height="16" rx="3" fill="#10b981" opacity="0.3"/>
+            <rect x="78"  y="122" width="22" height="16" rx="3" fill="#10b981" opacity="0.3"/>
+            <rect x="220" y="122" width="22" height="16" rx="3" fill="#10b981" opacity="0.3"/>
+            <!-- center dock -->
+            <circle cx="160" cy="90" r="18" fill="none" stroke="#10b981" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <circle cx="160" cy="90" r="6"  fill="#10b981" opacity="0.5"/>
+            <!-- corner LEDs -->
+            <circle cx="82"  cy="43"  r="4" fill="#10b981" opacity="0.9"/>
+            <circle cx="238" cy="43"  r="4" fill="#10b981" opacity="0.9"/>
+            <circle cx="82"  cy="137" r="4" fill="#10b981" opacity="0.4"/>
+            <circle cx="238" cy="137" r="4" fill="#10b981" opacity="0.4"/>
+          </svg>
+        </div>
+        <div class="card-body">
+          <span class="badge card-badge">INF-01</span>
+          <p class="card-name">Famtech Nest</p>
+          <p class="card-desc">Autonomous drone docking, recharging, and weather-shelter station with remote hatch actuation.</p>
+          <span class="card-arrow">View Specification <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="display:inline;vertical-align:middle"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </a>
+
+      <a href="04_watchtower.html" class="product-card">
+        <div class="card-thumb">
+          <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="180" fill="#060c1b"/>
+            <!-- ground line -->
+            <line x1="60" y1="162" x2="260" y2="162" stroke="#0e1e3a" stroke-width="2"/>
+            <!-- mast -->
+            <rect x="155" y="40" width="10" height="122" rx="2" fill="#162848"/>
+            <!-- sensor cluster at top -->
+            <rect x="138" y="30" width="44" height="28" rx="5" fill="#0f2040" stroke="#1e3870" stroke-width="1"/>
+            <!-- camera dome -->
+            <ellipse cx="160" cy="58" rx="10" ry="6" fill="#3b82f6" opacity="0.5"/>
+            <!-- PTZ camera -->
+            <rect x="148" y="36" width="24" height="14" rx="3" fill="#0a1628"/>
+            <circle cx="160" cy="43" r="4" fill="#3b82f6" opacity="0.8"/>
+            <!-- solar panel -->
+            <rect x="170" y="50" width="36" height="22" rx="3" fill="#0d3a20" stroke="#10b981" stroke-width="1"/>
+            <line x1="188" y1="50" x2="188" y2="72" stroke="#10b981" stroke-width="0.7" opacity="0.5"/>
+            <line x1="170" y1="61" x2="206" y2="61" stroke="#10b981" stroke-width="0.7" opacity="0.5"/>
+            <!-- antenna -->
+            <line x1="160" y1="30" x2="160" y2="16" stroke="#10b981" stroke-width="2"/>
+            <circle cx="160" cy="14" r="3" fill="#10b981" opacity="0.8"/>
+            <!-- cross braces -->
+            <line x1="155" y1="90"  x2="130" y2="162" stroke="#0e1e3a" stroke-width="1.5"/>
+            <line x1="165" y1="90"  x2="190" y2="162" stroke="#0e1e3a" stroke-width="1.5"/>
+            <line x1="155" y1="120" x2="140" y2="162" stroke="#0e1e3a" stroke-width="1"/>
+            <line x1="165" y1="120" x2="180" y2="162" stroke="#0e1e3a" stroke-width="1"/>
+            <!-- base feet -->
+            <rect x="126" y="158" width="28" height="8" rx="2" fill="#162848"/>
+            <rect x="166" y="158" width="28" height="8" rx="2" fill="#162848"/>
+            <!-- status LED -->
+            <circle cx="144" cy="38" r="3" fill="#ef4444" opacity="0.9"/>
+          </svg>
+        </div>
+        <div class="card-body">
+          <span class="badge card-badge">INF-02</span>
+          <p class="card-name">Famtech Watchtower</p>
+          <p class="card-desc">Farm security and crop monitoring tower with PTZ camera, multispectral sensors, and LoRa gateway.</p>
+          <span class="card-arrow">View Specification <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="display:inline;vertical-align:middle"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </a>
+
+      <a href="09_fencegrid.html" class="product-card">
+        <div class="card-thumb">
+          <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="180" fill="#060c1b"/>
+            <!-- ground -->
+            <rect x="0" y="150" width="320" height="30" rx="0" fill="#08101e"/>
+            <!-- fence posts -->
+            <rect x="70"  y="60" width="10" height="90" rx="2" fill="#162848"/>
+            <rect x="152" y="55" width="12" height="95" rx="2" fill="#1a3060"/>
+            <rect x="240" y="60" width="10" height="90" rx="2" fill="#162848"/>
+            <!-- fence wires -->
+            <line x1="60"  y1="82"  x2="260" y2="82"  stroke="#0e1e3a" stroke-width="1.5"/>
+            <line x1="60"  y1="100" x2="260" y2="100" stroke="#0e1e3a" stroke-width="1.5"/>
+            <line x1="60"  y1="118" x2="260" y2="118" stroke="#0e1e3a" stroke-width="1.5"/>
+            <!-- sensor box on main post -->
+            <rect x="140" y="58" width="36" height="28" rx="4" fill="#0f2040" stroke="#1e3870" stroke-width="1"/>
+            <rect x="144" y="62" width="28" height="10" rx="2" fill="#0a1628"/>
+            <!-- sensor LEDs row -->
+            <circle cx="150" cy="73" r="2" fill="#10b981" opacity="0.9"/>
+            <circle cx="158" cy="73" r="2" fill="#10b981" opacity="0.5"/>
+            <circle cx="166" cy="73" r="2" fill="#3b82f6" opacity="0.7"/>
+            <!-- antenna -->
+            <line x1="158" y1="58" x2="158" y2="46" stroke="#10b981" stroke-width="2"/>
+            <circle cx="158" cy="44" r="2.5" fill="#10b981" opacity="0.8"/>
+            <!-- ground stakes -->
+            <line x1="75"  y1="150" x2="68"  y2="168" stroke="#162848" stroke-width="2"/>
+            <line x1="75"  y1="150" x2="82"  y2="168" stroke="#162848" stroke-width="2"/>
+            <line x1="158" y1="150" x2="151" y2="168" stroke="#162848" stroke-width="2"/>
+            <line x1="158" y1="150" x2="165" y2="168" stroke="#162848" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="card-body">
+          <span class="badge card-badge">SNS-04</span>
+          <p class="card-name">Famtech Fencegrid</p>
+          <p class="card-desc">Perimeter intrusion detection node with vibration, PIR, and seismic sensors on existing fencelines.</p>
+          <span class="card-arrow">View Specification <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="display:inline;vertical-align:middle"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </a>
+
+      <a href="10_hub.html" class="product-card">
+        <div class="card-thumb">
+          <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="180" fill="#060c1b"/>
+            <!-- main enclosure isometric front-right view -->
+            <!-- top face -->
+            <polygon points="100,52 220,52 250,75 130,75" fill="#0d2038"/>
+            <!-- front face -->
+            <polygon points="100,52 130,75 130,148 100,125" fill="#0a1828"/>
+            <!-- right face -->
+            <polygon points="220,52 250,75 250,148 220,125" fill="#102235"/>
+            <!-- front panel -->
+            <polygon points="104,56 126,74 126,142 104,124" fill="#0c1e30"/>
+            <!-- display screen -->
+            <polygon points="108,62 122,72 122,105 108,95" fill="#0d2a1a" stroke="#10b981" stroke-width="0.8"/>
+            <line x1="108" y1="72" x2="122" y2="80" stroke="#10b981" stroke-width="0.5" opacity="0.5"/>
+            <line x1="108" y1="80" x2="122" y2="88" stroke="#10b981" stroke-width="0.5" opacity="0.5"/>
+            <!-- LED bar -->
+            <line x1="108" y1="110" x2="122" y2="118" stroke="#10b981" stroke-width="3" opacity="0.8" stroke-linecap="round"/>
+            <!-- ports row -->
+            <rect x="106" y="125" width="4" height="6" rx="1" fill="#3b82f6" opacity="0.7"/>
+            <rect x="112" y="125" width="4" height="6" rx="1" fill="#3b82f6" opacity="0.5"/>
+            <rect x="118" y="125" width="4" height="6" rx="1" fill="#3b82f6" opacity="0.3"/>
+            <!-- vents on right face -->
+            <line x1="230" y1="80"  x2="244" y2="88"  stroke="#0e1e36" stroke-width="2"/>
+            <line x1="230" y1="88"  x2="244" y2="96"  stroke="#0e1e36" stroke-width="2"/>
+            <line x1="230" y1="96"  x2="244" y2="104" stroke="#0e1e36" stroke-width="2"/>
+            <line x1="230" y1="104" x2="244" y2="112" stroke="#0e1e36" stroke-width="2"/>
+            <!-- antenna on top -->
+            <line x1="215" y1="52" x2="215" y2="30" stroke="#10b981" stroke-width="2"/>
+            <circle cx="215" cy="28" r="4" fill="none" stroke="#10b981" stroke-width="1.5"/>
+            <!-- SSD/storage indicator -->
+            <polygon points="148,56 210,56 240,74 178,74" fill="#081625" stroke="#1a3060" stroke-width="0.8"/>
+            <circle cx="192" cy="64" r="6" fill="#3b82f6" opacity="0.2" stroke="#3b82f6" stroke-width="0.8"/>
+          </svg>
+        </div>
+        <div class="card-body">
+          <span class="badge badge-blue card-badge">SYS-02</span>
+          <p class="card-name">Famtech Hub</p>
+          <p class="card-desc">Farm edge AI gateway and compute node with multi-radio connectivity and local inference engine.</p>
+          <span class="card-arrow">View Specification <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="display:inline;vertical-align:middle"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- ══ SENSING & MONITORING ═══════════════════════════════════ -->
+    <div class="section-divider">
+      <h3>Sensing &amp; Monitoring</h3>
+      <hr>
+      <span class="div-badge">3 products</span>
+    </div>
+    <div class="grid grid-4">
+
+      <a href="05_soilnode.html" class="product-card">
+        <div class="card-thumb">
+          <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="180" fill="#060c1b"/>
+            <!-- soil layers -->
+            <rect x="0" y="118" width="320" height="16" rx="0" fill="#081518" opacity="0.9"/>
+            <rect x="0" y="134" width="320" height="46" rx="0" fill="#06100d" opacity="0.9"/>
+            <!-- soil texture dots -->
+            <circle cx="80"  cy="128" r="2" fill="#0e2010" opacity="0.8"/>
+            <circle cx="120" cy="140" r="1.5" fill="#0e2010" opacity="0.6"/>
+            <circle cx="200" cy="132" r="2" fill="#0e2010" opacity="0.8"/>
+            <circle cx="240" cy="145" r="1.5" fill="#0e2010" opacity="0.6"/>
+            <!-- sensor head box -->
+            <rect x="132" y="44" width="56" height="44" rx="8" fill="#0f2040" stroke="#1e3870" stroke-width="1.5"/>
+            <!-- display -->
+            <rect x="139" y="51" width="42" height="20" rx="3" fill="#0a1628" stroke="#3b82f6" stroke-width="0.8"/>
+            <text x="160" y="63" text-anchor="middle" font-family="monospace" font-size="8" fill="#3b82f6" opacity="0.9">23.4% H</text>
+            <!-- LED indicators -->
+            <circle cx="141" cy="77" r="3" fill="#10b981"/>
+            <circle cx="151" cy="77" r="3" fill="#10b981" opacity="0.5"/>
+            <circle cx="161" cy="77" r="3" fill="#f59e0b" opacity="0.6"/>
+            <!-- antenna -->
+            <line x1="160" y1="44" x2="160" y2="28" stroke="#10b981" stroke-width="2"/>
+            <line x1="160" y1="28" x2="172" y2="20" stroke="#10b981" stroke-width="1.5" opacity="0.7"/>
+            <!-- spike shaft -->
+            <rect x="157" y="88" width="6" height="30" fill="#162848"/>
+            <!-- spike tip -->
+            <polygon points="157,118 163,118 160,130" fill="#10b981" opacity="0.6"/>
+            <!-- probe tines below soil -->
+            <rect x="155" y="130" width="2" height="22" rx="1" fill="#0e2030" opacity="0.7"/>
+            <rect x="159" y="130" width="2" height="26" rx="1" fill="#0e2030" opacity="0.7"/>
+            <rect x="163" y="130" width="2" height="22" rx="1" fill="#0e2030" opacity="0.7"/>
+          </svg>
+        </div>
+        <div class="card-body">
+          <span class="badge card-badge">SNS-01</span>
+          <p class="card-name">Famtech Soilnode</p>
+          <p class="card-desc">In-field soil intelligence sensor measuring moisture, EC, pH, temperature, and NPK at 3 depths.</p>
+          <span class="card-arrow">View Specification <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="display:inline;vertical-align:middle"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </a>
+
+      <a href="08_aquasense.html" class="product-card">
+        <div class="card-thumb">
+          <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="180" fill="#060c1b"/>
+            <!-- water surface -->
+            <path d="M0 110 Q80 100 160 108 Q240 116 320 106 L320 180 L0 180 Z" fill="#041828" opacity="0.9"/>
+            <path d="M0 112 Q80 104 160 110 Q240 118 320 108" fill="none" stroke="#3b82f6" stroke-width="1" opacity="0.4"/>
+            <!-- buoy hull -->
+            <ellipse cx="160" cy="115" rx="38" ry="14" fill="#0d2040" stroke="#1e3870" stroke-width="1.5"/>
+            <ellipse cx="160" cy="110" rx="36" ry="20" fill="#0f2448" stroke="#1a3060" stroke-width="1"/>
+            <!-- flotation ring -->
+            <ellipse cx="160" cy="112" rx="40" ry="10" fill="none" stroke="#3b82f6" stroke-width="2" opacity="0.5"/>
+            <!-- top dome -->
+            <ellipse cx="160" cy="90" rx="22" ry="16" fill="#0e2238"/>
+            <!-- mast -->
+            <rect x="158" y="28" width="4" height="62" fill="#162848"/>
+            <!-- sensor pod on mast -->
+            <rect x="148" y="60" width="24" height="16" rx="4" fill="#0f2040" stroke="#1e3870" stroke-width="1"/>
+            <circle cx="160" cy="68" r="5" fill="#3b82f6" opacity="0.6"/>
+            <!-- antenna -->
+            <line x1="160" y1="28" x2="160" y2="14" stroke="#10b981" stroke-width="2"/>
+            <circle cx="160" cy="12" r="3" fill="#10b981" opacity="0.8"/>
+            <!-- anchor cable -->
+            <line x1="162" y1="128" x2="168" y2="165" stroke="#0e1e36" stroke-width="1.5" stroke-dasharray="3 2"/>
+            <!-- solar panel -->
+            <rect x="164" y="55" width="26" height="16" rx="2" fill="#0d3a20" stroke="#10b981" stroke-width="0.8"/>
+            <line x1="177" y1="55" x2="177" y2="71" stroke="#10b981" stroke-width="0.5" opacity="0.5"/>
+            <line x1="164" y1="63" x2="190" y2="63" stroke="#10b981" stroke-width="0.5" opacity="0.5"/>
+            <!-- sensor probes -->
+            <line x1="148" y1="120" x2="144" y2="155" stroke="#3b82f6" stroke-width="1.5" opacity="0.6"/>
+            <line x1="172" y1="120" x2="176" y2="155" stroke="#3b82f6" stroke-width="1.5" opacity="0.6"/>
+          </svg>
+        </div>
+        <div class="card-body">
+          <span class="badge badge-blue card-badge">SNS-03</span>
+          <p class="card-name">Famtech Aquasense</p>
+          <p class="card-desc">Aquaculture water quality monitoring buoy with DO, pH, temperature, turbidity, and algae sensors.</p>
+          <span class="card-arrow">View Specification <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="display:inline;vertical-align:middle"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </a>
+
+      <a href="07_herdtag.html" class="product-card">
+        <div class="card-thumb">
+          <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="180" fill="#060c1b"/>
+            <!-- ear tag front view -->
+            <!-- tag body - rounded trapezoid -->
+            <path d="M 120 40 L 200 40 Q 216 40 218 55 L 215 148 Q 214 158 160 158 Q 106 158 105 148 L 102 55 Q 104 40 120 40 Z" fill="#0f2040" stroke="#1e3870" stroke-width="1.5"/>
+            <!-- pin/clip at top center -->
+            <rect x="152" y="26" width="16" height="18" rx="4" fill="#162848" stroke="#1a3060" stroke-width="1"/>
+            <circle cx="160" cy="35" r="4" fill="#0a1225" stroke="#10b981" stroke-width="1"/>
+            <!-- display area -->
+            <rect x="118" y="54" width="84" height="52" rx="6" fill="#0a1628" stroke="#3b82f6" stroke-width="0.8"/>
+            <!-- heart rate graph -->
+            <polyline points="122,78 130,78 135,68 142,88 148,72 153,82 158,78 202,78" fill="none" stroke="#10b981" stroke-width="1.5"/>
+            <!-- data rows -->
+            <line x1="120" y1="92"  x2="200" y2="92"  stroke="#0e1e3a" stroke-width="0.8"/>
+            <text x="126" y="103" font-family="monospace" font-size="7" fill="#3b82f6" opacity="0.8">38.6°C  GPS OK</text>
+            <!-- antenna wire -->
+            <line x1="160" y1="26" x2="160" y2="16" stroke="#10b981" stroke-width="1.5"/>
+            <circle cx="160" cy="14" r="2.5" fill="#10b981" opacity="0.7"/>
+            <!-- LED on tag -->
+            <circle cx="186" cy="62" r="3.5" fill="#10b981"/>
+            <!-- battery indicator -->
+            <rect x="118" y="115" width="48" height="8" rx="2" fill="#0e2030"/>
+            <rect x="119" y="116" width="34" height="6" rx="1.5" fill="#10b981" opacity="0.7"/>
+            <rect x="166" y="117" width="4" height="4" rx="1" fill="#162848"/>
+            <!-- small logo bar -->
+            <rect x="118" y="130" width="84" height="16" rx="4" fill="#0d1a2e"/>
+            <text x="160" y="141" text-anchor="middle" font-family="monospace" font-size="7" fill="#2a4888" letter-spacing="3">FAMTECH</text>
+          </svg>
+        </div>
+        <div class="card-body">
+          <span class="badge card-badge">SNS-02</span>
+          <p class="card-name">Famtech Herdtag</p>
+          <p class="card-desc">Livestock health and location tracker with biometric sensing, GPS, and 5-year battery life.</p>
+          <span class="card-arrow">View Specification <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="display:inline;vertical-align:middle"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- ══ LIVESTOCK SYSTEMS ══════════════════════════════════════ -->
+    <div class="section-divider">
+      <h3>Livestock &amp; Aquaculture Systems</h3>
+      <hr>
+      <span class="div-badge">2 products</span>
+    </div>
+    <div class="grid grid-4">
+
+      <a href="06_feedpro.html" class="product-card">
+        <div class="card-thumb">
+          <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="180" fill="#060c1b"/>
+            <!-- ground -->
+            <line x1="50" y1="165" x2="270" y2="165" stroke="#0e1e3a" stroke-width="1.5"/>
+            <!-- main frame legs -->
+            <rect x="118" y="110" width="8"  height="55" rx="2" fill="#162848"/>
+            <rect x="194" y="110" width="8"  height="55" rx="2" fill="#162848"/>
+            <!-- cross brace -->
+            <line x1="118" y1="138" x2="202" y2="138" stroke="#0e1e3a" stroke-width="3"/>
+            <!-- bird hopper (large cylinder/cone top) -->
+            <rect x="110" y="40" width="100" height="72" rx="8" fill="#0f2040" stroke="#1e3870" stroke-width="1.5"/>
+            <!-- hopper cone top -->
+            <polygon points="110,40 210,40 192,22 128,22" fill="#0d1a30" stroke="#1a3060" stroke-width="1"/>
+            <!-- auger pipe -->
+            <rect x="157" y="112" width="6" height="20" rx="2" fill="#162848"/>
+            <!-- trough for birds -->
+            <path d="M 80 155 Q 160 148 240 155 L 248 165 L 72 165 Z" fill="#0d2038" stroke="#1a3060" stroke-width="1"/>
+            <!-- fish hopper (right side, round) -->
+            <ellipse cx="248" cy="80" rx="28" ry="38" fill="#0a1830" stroke="#1a3060" stroke-width="1"/>
+            <!-- water pipe -->
+            <rect x="246" y="118" width="4" height="40" rx="1" fill="#3b82f6" opacity="0.6"/>
+            <ellipse cx="248" cy="158" rx="8" ry="4" fill="#3b82f6" opacity="0.3"/>
+            <!-- solar panel on top -->
+            <rect x="78" y="18" width="44" height="24" rx="3" fill="#0d3a20" stroke="#10b981" stroke-width="1"/>
+            <line x1="100" y1="18" x2="100" y2="42" stroke="#10b981" stroke-width="0.7" opacity="0.5"/>
+            <line x1="78"  y1="30" x2="122" y2="30" stroke="#10b981" stroke-width="0.7" opacity="0.5"/>
+            <!-- control box -->
+            <rect x="126" y="52" width="68" height="30" rx="4" fill="#0a1628" stroke="#1e3870" stroke-width="0.8"/>
+            <rect x="130" y="56" width="34" height="18" rx="2" fill="#0d2a1a" stroke="#10b981" stroke-width="0.5"/>
+            <text x="147" y="67" text-anchor="middle" font-family="monospace" font-size="6" fill="#10b981" opacity="0.9">FEED ON</text>
+            <!-- status LEDs -->
+            <circle cx="170" cy="62" r="2.5" fill="#10b981"/>
+            <circle cx="176" cy="62" r="2.5" fill="#f59e0b" opacity="0.7"/>
+            <circle cx="182" cy="62" r="2.5" fill="#3b82f6" opacity="0.7"/>
+            <!-- LoRa antenna -->
+            <line x1="205" y1="40" x2="205" y2="22" stroke="#10b981" stroke-width="1.5"/>
+            <circle cx="205" cy="20" r="2.5" fill="#10b981" opacity="0.8"/>
+          </svg>
+        </div>
+        <div class="card-body">
+          <span class="badge badge-orange card-badge">SYS-01</span>
+          <p class="card-name">Famtech Feedpro</p>
+          <p class="card-desc">Multi-species automated feeding station for poultry, livestock, and aquaculture with solar power and IoT control.</p>
+          <span class="card-arrow">View Specification <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="display:inline;vertical-align:middle"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- ══ WORKER & MOBILITY ══════════════════════════════════════ -->
+    <div class="section-divider">
+      <h3>Worker &amp; Mobility</h3>
+      <hr>
+      <span class="div-badge">2 products</span>
+    </div>
+    <div class="grid grid-4">
+
+      <a href="11_crewlink.html" class="product-card">
+        <div class="card-thumb">
+          <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="180" fill="#060c1b"/>
+            <!-- wristband -->
+            <path d="M 104 140 Q 96 140 96 130 L 96 50 Q 96 40 104 40 L 216 40 Q 224 40 224 50 L 224 130 Q 224 140 216 140 Z" fill="#0a1220"/>
+            <!-- band straps -->
+            <rect x="128" y="134" width="64" height="22" rx="8" fill="#0d1a2e" stroke="#1a3060" stroke-width="1"/>
+            <rect x="128" y="24"  width="64" height="22" rx="8" fill="#0d1a2e" stroke="#1a3060" stroke-width="1"/>
+            <!-- watch face -->
+            <rect x="100" y="44" width="120" height="92" rx="14" fill="#0f2040" stroke="#1e3870" stroke-width="1.5"/>
+            <!-- screen -->
+            <rect x="108" y="52" width="104" height="76" rx="8" fill="#071220"/>
+            <!-- health stats display -->
+            <text x="160" y="72" text-anchor="middle" font-family="monospace" font-size="8" fill="#10b981">72 BPM</text>
+            <!-- heart rate mini graph -->
+            <polyline points="112,84 120,84 124,76 130,92 136,80 142,84 160,84 178,84" fill="none" stroke="#10b981" stroke-width="1.5" opacity="0.8"/>
+            <!-- divider -->
+            <line x1="110" y1="96" x2="210" y2="96" stroke="#0e1e3a" stroke-width="0.8"/>
+            <!-- bottom info -->
+            <text x="130" y="107" font-family="monospace" font-size="6.5" fill="#3b82f6" opacity="0.9">GPS LOCK  OK</text>
+            <text x="130" y="117" font-family="monospace" font-size="6.5" fill="#f59e0b" opacity="0.8">TEMP 36.8°C</text>
+            <!-- SOS button indicator -->
+            <circle cx="192" cy="111" r="8" fill="#ef4444" opacity="0.2" stroke="#ef4444" stroke-width="1"/>
+            <text x="192" y="115" text-anchor="middle" font-family="monospace" font-size="6" fill="#ef4444">SOS</text>
+            <!-- crown button -->
+            <rect x="224" y="80" width="8" height="16" rx="3" fill="#162848" stroke="#1a3060" stroke-width="0.8"/>
+            <!-- status dots -->
+            <circle cx="130" cy="124" r="2.5" fill="#10b981"/>
+            <circle cx="138" cy="124" r="2.5" fill="#3b82f6" opacity="0.7"/>
+          </svg>
+        </div>
+        <div class="card-body">
+          <span class="badge badge-purple card-badge">W-01</span>
+          <p class="card-name">Famtech CrewLink</p>
+          <p class="card-desc">Farm worker safety and tracking wearable with biometrics, GPS, fall detection, and emergency SOS.</p>
+          <span class="card-arrow">View Specification <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="display:inline;vertical-align:middle"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </a>
+
+      <a href="12_agrimule.html" class="product-card">
+        <div class="card-thumb">
+          <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="180" fill="#060c1b"/>
+            <!-- ground shadow -->
+            <ellipse cx="160" cy="160" rx="100" ry="8" fill="#000" opacity="0.5"/>
+            <!-- rear wheels -->
+            <circle cx="82"  cy="138" r="28" fill="#0a1220" stroke="#162848" stroke-width="3"/>
+            <circle cx="82"  cy="138" r="14" fill="#0d1a30" stroke="#1a3060" stroke-width="1"/>
+            <circle cx="82"  cy="138" r="5"  fill="#162848"/>
+            <!-- front wheels -->
+            <circle cx="238" cy="138" r="28" fill="#0a1220" stroke="#162848" stroke-width="3"/>
+            <circle cx="238" cy="138" r="14" fill="#0d1a30" stroke="#1a3060" stroke-width="1"/>
+            <circle cx="238" cy="138" r="5"  fill="#162848"/>
+            <!-- tread patterns -->
+            <line x1="82"  y1="110" x2="82"  y2="166" stroke="#0e1e36" stroke-width="1" opacity="0.5"/>
+            <line x1="54"  y1="138" x2="110" y2="138" stroke="#0e1e36" stroke-width="1" opacity="0.5"/>
+            <line x1="238" y1="110" x2="238" y2="166" stroke="#0e1e36" stroke-width="1" opacity="0.5"/>
+            <line x1="210" y1="138" x2="266" y2="138" stroke="#0e1e36" stroke-width="1" opacity="0.5"/>
+            <!-- main chassis -->
+            <rect x="60" y="82" width="200" height="56" rx="8" fill="#0d2040" stroke="#1e3870" stroke-width="1.5"/>
+            <!-- cargo bed -->
+            <rect x="68" y="52" width="184" height="34" rx="5" fill="#0a1828" stroke="#1a3060" stroke-width="1"/>
+            <!-- cargo grid -->
+            <line x1="68" y1="60" x2="252" y2="60" stroke="#0e1e3a" stroke-width="0.7"/>
+            <line x1="68" y1="70" x2="252" y2="70" stroke="#0e1e3a" stroke-width="0.7"/>
+            <line x1="68" y1="80" x2="252" y2="80" stroke="#0e1e3a" stroke-width="0.7"/>
+            <line x1="128" y1="52" x2="128" y2="86" stroke="#0e1e3a" stroke-width="0.7"/>
+            <line x1="192" y1="52" x2="192" y2="86" stroke="#0e1e3a" stroke-width="0.7"/>
+            <!-- sensor bar on front -->
+            <rect x="232" y="90" width="20" height="32" rx="4" fill="#0f2040" stroke="#1e3870" stroke-width="1"/>
+            <circle cx="242" cy="100" r="5" fill="#3b82f6" opacity="0.7"/>
+            <circle cx="242" cy="114" r="4" fill="#10b981" opacity="0.7"/>
+            <!-- control box -->
+            <rect x="68" y="88" width="48" height="32" rx="4" fill="#0a1628"/>
+            <circle cx="84"  cy="100" r="5" fill="#10b981" opacity="0.6"/>
+            <circle cx="100" cy="100" r="5" fill="#3b82f6" opacity="0.6"/>
+            <rect x="70"  y="110" width="44" height="4"  rx="2" fill="#10b981" opacity="0.4"/>
+            <!-- axle bars -->
+            <rect x="82"  y="126" width="14" height="5" rx="1" fill="#162848"/>
+            <rect x="224" y="126" width="14" height="5" rx="1" fill="#162848"/>
+          </svg>
+        </div>
+        <div class="card-body">
+          <span class="badge badge-orange card-badge">M-01</span>
+          <p class="card-name">Famtech AgriMule</p>
+          <p class="card-desc">Autonomous electric cargo UGV with 500 kg payload, terrain following, and autonomous farm navigation.</p>
+          <span class="card-arrow">View Specification <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="display:inline;vertical-align:middle"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- ══ PLANTING IMPLEMENTS ════════════════════════════════════ -->
+    <div class="section-divider">
+      <h3>Planting Implements</h3>
+      <hr>
+      <span class="div-badge">2 products</span>
+    </div>
+    <div class="grid grid-4">
+
+      <a href="13_rowplanter.html" class="product-card">
+        <div class="card-thumb">
+          <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="180" fill="#060c1b"/>
+            <!-- ground -->
+            <rect x="0" y="145" width="320" height="35" fill="#06100c" opacity="0.9"/>
+            <!-- furrows -->
+            <line x1="50"  y1="145" x2="50"  y2="180" stroke="#0a1810" stroke-width="4"/>
+            <line x1="90"  y1="145" x2="90"  y2="180" stroke="#0a1810" stroke-width="4"/>
+            <line x1="130" y1="145" x2="130" y2="180" stroke="#0a1810" stroke-width="4"/>
+            <line x1="170" y1="145" x2="170" y2="180" stroke="#0a1810" stroke-width="4"/>
+            <line x1="210" y1="145" x2="210" y2="180" stroke="#0a1810" stroke-width="4"/>
+            <line x1="250" y1="145" x2="250" y2="180" stroke="#0a1810" stroke-width="4"/>
+            <!-- main toolbar -->
+            <rect x="35" y="68" width="250" height="16" rx="5" fill="#0d2040" stroke="#1e3870" stroke-width="1.5"/>
+            <!-- toolbar brace -->
+            <rect x="148" y="52" width="24" height="18" rx="3" fill="#162848"/>
+            <rect x="154" y="36" width="12" height="18" rx="2" fill="#1a3060"/>
+            <!-- seed hopper (large) -->
+            <rect x="78" y="28" width="164" height="44" rx="8" fill="#0f2040" stroke="#1e3870" stroke-width="1"/>
+            <!-- seed monitor display -->
+            <rect x="88" y="34" width="60" height="28" rx="4" fill="#0a1628" stroke="#3b82f6" stroke-width="0.8"/>
+            <text x="118" y="51" text-anchor="middle" font-family="monospace" font-size="7" fill="#10b981">SEEDING OK</text>
+            <!-- row units hanging down -->
+            <rect x="46"  y="84" width="12" height="48" rx="3" fill="#162848"/>
+            <rect x="86"  y="84" width="12" height="48" rx="3" fill="#162848"/>
+            <rect x="126" y="84" width="12" height="48" rx="3" fill="#162848"/>
+            <rect x="166" y="84" width="12" height="48" rx="3" fill="#162848"/>
+            <rect x="206" y="84" width="12" height="48" rx="3" fill="#162848"/>
+            <rect x="246" y="84" width="12" height="48" rx="3" fill="#162848"/>
+            <!-- disc openers at bottom of each row unit -->
+            <ellipse cx="52"  cy="136" rx="10" ry="4" fill="#10b981" opacity="0.5"/>
+            <ellipse cx="92"  cy="136" rx="10" ry="4" fill="#10b981" opacity="0.5"/>
+            <ellipse cx="132" cy="136" rx="10" ry="4" fill="#10b981" opacity="0.5"/>
+            <ellipse cx="172" cy="136" rx="10" ry="4" fill="#10b981" opacity="0.5"/>
+            <ellipse cx="212" cy="136" rx="10" ry="4" fill="#10b981" opacity="0.5"/>
+            <ellipse cx="252" cy="136" rx="10" ry="4" fill="#10b981" opacity="0.5"/>
+            <!-- seed tubes (green lines) -->
+            <line x1="52"  y1="140" x2="52"  y2="148" stroke="#10b981" stroke-width="1.5" opacity="0.7"/>
+            <line x1="92"  y1="140" x2="92"  y2="148" stroke="#10b981" stroke-width="1.5" opacity="0.7"/>
+            <line x1="132" y1="140" x2="132" y2="148" stroke="#10b981" stroke-width="1.5" opacity="0.7"/>
+            <line x1="172" y1="140" x2="172" y2="148" stroke="#10b981" stroke-width="1.5" opacity="0.7"/>
+            <line x1="212" y1="140" x2="212" y2="148" stroke="#10b981" stroke-width="1.5" opacity="0.7"/>
+            <line x1="252" y1="140" x2="252" y2="148" stroke="#10b981" stroke-width="1.5" opacity="0.7"/>
+          </svg>
+        </div>
+        <div class="card-body">
+          <span class="badge card-badge">I-01</span>
+          <p class="card-name">Famtech RowPlanter</p>
+          <p class="card-desc">12-row pneumatic precision row crop planter with variable-rate seeding and real-time stand mapping.</p>
+          <span class="card-arrow">View Specification <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="display:inline;vertical-align:middle"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </a>
+
+      <a href="14_terraplanter.html" class="product-card">
+        <div class="card-thumb">
+          <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="180" fill="#060c1b"/>
+            <!-- ground -->
+            <rect x="0" y="148" width="320" height="32" fill="#06100c" opacity="0.8"/>
+            <!-- tracks -->
+            <rect x="56" y="120" width="208" height="32" rx="10" fill="#0a1220" stroke="#162848" stroke-width="2"/>
+            <rect x="68" y="124" width="184" height="24" rx="6" fill="#0d1a30"/>
+            <!-- track links -->
+            <line x1="80"  y1="124" x2="80"  y2="148" stroke="#0e1e36" stroke-width="1"/>
+            <line x1="104" y1="124" x2="104" y2="148" stroke="#0e1e36" stroke-width="1"/>
+            <line x1="128" y1="124" x2="128" y2="148" stroke="#0e1e36" stroke-width="1"/>
+            <line x1="152" y1="124" x2="152" y2="148" stroke="#0e1e36" stroke-width="1"/>
+            <line x1="176" y1="124" x2="176" y2="148" stroke="#0e1e36" stroke-width="1"/>
+            <line x1="200" y1="124" x2="200" y2="148" stroke="#0e1e36" stroke-width="1"/>
+            <line x1="224" y1="124" x2="224" y2="148" stroke="#0e1e36" stroke-width="1"/>
+            <!-- main body -->
+            <rect x="68" y="70" width="184" height="52" rx="8" fill="#0d2040" stroke="#1e3870" stroke-width="1.5"/>
+            <!-- planting arm (extended forward) -->
+            <rect x="228" y="62" width="12" height="70" rx="4" fill="#162848" stroke="#1a3060" stroke-width="1"/>
+            <!-- auger/drill head -->
+            <ellipse cx="234" cy="136" rx="14" ry="10" fill="#0a1628" stroke="#10b981" stroke-width="1.5"/>
+            <line x1="234" y1="132" x2="234" y2="148" stroke="#10b981" stroke-width="2"/>
+            <!-- sapling holder -->
+            <rect x="238" y="78" width="28" height="44" rx="4" fill="#0d3a20" stroke="#10b981" stroke-width="1"/>
+            <!-- sapling -->
+            <line x1="252" y1="78" x2="252" y2="60" stroke="#10b981" stroke-width="2"/>
+            <ellipse cx="252" cy="56" rx="12" ry="8" fill="#0d3a20" stroke="#10b981" stroke-width="1" opacity="0.8"/>
+            <!-- sensor bar on top -->
+            <rect x="78" y="62" width="140" height="12" rx="4" fill="#0f2040" stroke="#1e3870" stroke-width="1"/>
+            <!-- cameras -->
+            <circle cx="108" cy="68" r="5" fill="#3b82f6" opacity="0.7"/>
+            <circle cx="130" cy="68" r="5" fill="#3b82f6" opacity="0.5"/>
+            <!-- GPS antenna -->
+            <line x1="160" y1="62" x2="160" y2="46" stroke="#10b981" stroke-width="2"/>
+            <circle cx="160" cy="44" r="4" fill="#10b981" opacity="0.8"/>
+            <!-- control panel -->
+            <rect x="78" y="80" width="56" height="28" rx="3" fill="#0a1628" stroke="#1e3070" stroke-width="0.8"/>
+            <circle cx="92" cy="92" r="4" fill="#10b981" opacity="0.7"/>
+            <circle cx="108" cy="92" r="4" fill="#3b82f6" opacity="0.6"/>
+          </svg>
+        </div>
+        <div class="card-body">
+          <span class="badge card-badge">I-02</span>
+          <p class="card-name">Famtech TerraPlanter</p>
+          <p class="card-desc">Autonomous tree and forestry sapling planter with terrain-adaptive arm, soil augering, and GPS waypoint mapping.</p>
+          <span class="card-arrow">View Specification <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="display:inline;vertical-align:middle"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- ══ WEEDING & CLEARING ═════════════════════════════════════ -->
+    <div class="section-divider">
+      <h3>Weeding &amp; Clearing</h3>
+      <hr>
+      <span class="div-badge">2 products</span>
+    </div>
+    <div class="grid grid-4">
+
+      <a href="15_microweeder.html" class="product-card">
+        <div class="card-thumb">
+          <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="180" fill="#060c1b"/>
+            <!-- ground -->
+            <rect x="0" y="148" width="320" height="32" fill="#06100c" opacity="0.8"/>
+            <!-- 4 wheels -->
+            <circle cx="88"  cy="140" r="22" fill="#0a1220" stroke="#162848" stroke-width="2.5"/>
+            <circle cx="88"  cy="140" r="10" fill="#0d1a30" stroke="#1a3060" stroke-width="1"/>
+            <circle cx="232" cy="140" r="22" fill="#0a1220" stroke="#162848" stroke-width="2.5"/>
+            <circle cx="232" cy="140" r="10" fill="#0d1a30" stroke="#1a3060" stroke-width="1"/>
+            <!-- small front/rear wheels -->
+            <circle cx="88"  cy="140" r="4" fill="#162848"/>
+            <circle cx="232" cy="140" r="4" fill="#162848"/>
+            <!-- main body chassis -->
+            <rect x="66" y="76" width="188" height="64" rx="8" fill="#0d2040" stroke="#1e3870" stroke-width="1.5"/>
+            <!-- camera head (front-mounted) -->
+            <rect x="220" y="68" width="38" height="32" rx="6" fill="#0f2040" stroke="#1e3870" stroke-width="1"/>
+            <!-- eye / stereo camera -->
+            <circle cx="232" cy="82" r="7" fill="#0a1628" stroke="#3b82f6" stroke-width="1.5"/>
+            <circle cx="232" cy="82" r="3" fill="#3b82f6" opacity="0.8"/>
+            <circle cx="248" cy="82" r="7" fill="#0a1628" stroke="#3b82f6" stroke-width="1.5"/>
+            <circle cx="248" cy="82" r="3" fill="#3b82f6" opacity="0.8"/>
+            <!-- laser module -->
+            <rect x="228" y="92" width="24" height="6" rx="2" fill="#ef4444" opacity="0.4"/>
+            <line x1="252" y1="95" x2="280" y2="148" stroke="#ef4444" stroke-width="1" opacity="0.5" stroke-dasharray="3 2"/>
+            <!-- blade arm below chassis -->
+            <rect x="110" y="134" width="100" height="14" rx="4" fill="#162848" stroke="#1a3060" stroke-width="1"/>
+            <line x1="110" y1="141" x2="210" y2="141" stroke="#10b981" stroke-width="1.5" opacity="0.6"/>
+            <!-- on-board computer -->
+            <rect x="76" y="84" width="72" height="40" rx="4" fill="#0a1628" stroke="#1e3070" stroke-width="0.8"/>
+            <line x1="80" y1="92" x2="140" y2="92" stroke="#10b981" stroke-width="0.8" opacity="0.5"/>
+            <line x1="80" y1="100" x2="130" y2="100" stroke="#10b981" stroke-width="0.8" opacity="0.4"/>
+            <line x1="80" y1="108" x2="140" y2="108" stroke="#10b981" stroke-width="0.8" opacity="0.3"/>
+            <circle cx="136" cy="90" r="4" fill="#10b981" opacity="0.8"/>
+            <!-- GPS dome on top -->
+            <rect x="148" y="68" width="60" height="10" rx="3" fill="#0f2040" stroke="#1e3870" stroke-width="0.8"/>
+            <ellipse cx="178" cy="68" rx="18" ry="8" fill="#10b981" opacity="0.15" stroke="#10b981" stroke-width="0.8"/>
+          </svg>
+        </div>
+        <div class="card-body">
+          <span class="badge badge-orange card-badge">R-01</span>
+          <p class="card-name">Famtech MicroWeeder</p>
+          <p class="card-desc">Precision CV laser and blade weeder with per-plant weed ID and targeted elimination between crop rows.</p>
+          <span class="card-arrow">View Specification <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="display:inline;vertical-align:middle"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </a>
+
+      <a href="16_brushcrusher.html" class="product-card">
+        <div class="card-thumb">
+          <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="180" fill="#060c1b"/>
+            <!-- ground with cut vegetation -->
+            <rect x="0" y="148" width="320" height="32" fill="#06100c" opacity="0.8"/>
+            <line x1="50"  y1="148" x2="55"  y2="165" stroke="#0a1810" stroke-width="2" opacity="0.6"/>
+            <line x1="90"  y1="148" x2="85"  y2="162" stroke="#0a1810" stroke-width="2" opacity="0.5"/>
+            <line x1="130" y1="148" x2="136" y2="168" stroke="#0a1810" stroke-width="2" opacity="0.6"/>
+            <!-- large tracked chassis -->
+            <!-- left track -->
+            <rect x="42" y="108" width="56" height="44" rx="12" fill="#0a1220" stroke="#162848" stroke-width="2"/>
+            <rect x="52" y="116" width="36" height="28" rx="6" fill="#0d1a30"/>
+            <!-- right track -->
+            <rect x="222" y="108" width="56" height="44" rx="12" fill="#0a1220" stroke="#162848" stroke-width="2"/>
+            <rect x="232" y="116" width="36" height="28" rx="6" fill="#0d1a30"/>
+            <!-- track links -->
+            <line x1="56"  y1="116" x2="56"  y2="144" stroke="#0e1e36" stroke-width="1"/>
+            <line x1="68"  y1="116" x2="68"  y2="144" stroke="#0e1e36" stroke-width="1"/>
+            <line x1="80"  y1="116" x2="80"  y2="144" stroke="#0e1e36" stroke-width="1"/>
+            <line x1="236" y1="116" x2="236" y2="144" stroke="#0e1e36" stroke-width="1"/>
+            <line x1="248" y1="116" x2="248" y2="144" stroke="#0e1e36" stroke-width="1"/>
+            <line x1="260" y1="116" x2="260" y2="144" stroke="#0e1e36" stroke-width="1"/>
+            <!-- main body -->
+            <rect x="86" y="72" width="148" height="64" rx="6" fill="#0d2040" stroke="#1e3870" stroke-width="1.5"/>
+            <!-- exhaust stack -->
+            <rect x="90" y="50" width="14" height="28" rx="3" fill="#162848"/>
+            <ellipse cx="97" cy="50" rx="8" ry="4" fill="#0a1220" stroke="#162848" stroke-width="1"/>
+            <!-- cab -->
+            <rect x="104" y="56" width="68" height="42" rx="5" fill="#0f2040" stroke="#1e3870" stroke-width="1"/>
+            <!-- cab window -->
+            <rect x="110" y="62" width="56" height="24" rx="3" fill="#071828" stroke="#3b82f6" stroke-width="0.8" opacity="0.8"/>
+            <!-- flail head at front (right side) -->
+            <rect x="218" y="64" width="60" height="76" rx="6" fill="#162040" stroke="#1a3060" stroke-width="1.5"/>
+            <!-- spinning flails -->
+            <circle cx="248" cy="102" r="26" fill="none" stroke="#f59e0b" stroke-width="1" stroke-dasharray="5 4" opacity="0.6"/>
+            <line x1="248" y1="76"  x2="248" y2="128" stroke="#f59e0b" stroke-width="2" opacity="0.5"/>
+            <line x1="222" y1="102" x2="274" y2="102" stroke="#f59e0b" stroke-width="2" opacity="0.5"/>
+            <line x1="229" y1="83"  x2="267" y2="121" stroke="#f59e0b" stroke-width="2" opacity="0.3"/>
+            <line x1="229" y1="121" x2="267" y2="83"  stroke="#f59e0b" stroke-width="2" opacity="0.3"/>
+            <!-- warning stripes on flail -->
+            <rect x="218" y="130" width="60" height="10" rx="0" fill="none"/>
+            <line x1="218" y1="134" x2="278" y2="134" stroke="#f59e0b" stroke-width="2" opacity="0.4"/>
+          </svg>
+        </div>
+        <div class="card-body">
+          <span class="badge badge-orange card-badge">R-02</span>
+          <p class="card-name">Famtech BrushCrusher</p>
+          <p class="card-desc">Heavy-duty diesel forestry mulcher and land-clearing system with high-inertia flail rotor and GPS boundary control.</p>
+          <span class="card-arrow">View Specification <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="display:inline;vertical-align:middle"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- ══ HARVESTING SYSTEMS ══════════════════════════════════════ -->
+    <div class="section-divider">
+      <h3>Harvesting Systems</h3>
+      <hr>
+      <span class="div-badge">1 product</span>
+    </div>
+    <div class="grid grid-4">
+
+      <a href="17_omniharvester.html" class="product-card">
+        <div class="card-thumb">
+          <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="180" fill="#060c1b"/>
+            <!-- ground -->
+            <rect x="0" y="152" width="320" height="28" fill="#06100c" opacity="0.8"/>
+            <!-- crop rows in bg -->
+            <line x1="240" y1="90"  x2="290" y2="152" stroke="#0a1810" stroke-width="3" opacity="0.5"/>
+            <line x1="260" y1="90"  x2="310" y2="152" stroke="#0a1810" stroke-width="3" opacity="0.5"/>
+            <line x1="220" y1="90"  x2="270" y2="152" stroke="#0a1810" stroke-width="3" opacity="0.4"/>
+            <!-- wheeled base -->
+            <rect x="38" y="110" width="180" height="44" rx="8" fill="#0d2040" stroke="#1e3870" stroke-width="1.5"/>
+            <!-- 4 wheels -->
+            <circle cx="62"  cy="146" r="18" fill="#0a1220" stroke="#162848" stroke-width="2"/>
+            <circle cx="62"  cy="146" r="8"  fill="#0d1a30" stroke="#1a3060" stroke-width="1"/>
+            <circle cx="196" cy="146" r="18" fill="#0a1220" stroke="#162848" stroke-width="2"/>
+            <circle cx="196" cy="146" r="8"  fill="#0d1a30" stroke="#1a3060" stroke-width="1"/>
+            <!-- arm base turret -->
+            <rect x="80" y="88" width="80" height="26" rx="6" fill="#0f2040" stroke="#1e3870" stroke-width="1"/>
+            <!-- robotic arm segment 1 (shoulder) -->
+            <rect x="148" y="58" width="14" height="58" rx="5" fill="#162848" stroke="#1a3060" stroke-width="1"/>
+            <!-- arm segment 2 (elbow) -->
+            <rect x="158" y="30" width="60" height="14" rx="5" fill="#1a3060" stroke="#1e3870" stroke-width="1"/>
+            <!-- wrist joint -->
+            <circle cx="218" cy="37" r="8" fill="#0f2040" stroke="#1e3870" stroke-width="1.5"/>
+            <!-- gripper/end effector -->
+            <rect x="220" y="30" width="52" height="28" rx="5" fill="#0d2040" stroke="#1e3870" stroke-width="1"/>
+            <!-- gripper fingers -->
+            <rect x="228" y="28" width="8" height="14" rx="3" fill="#10b981" opacity="0.6"/>
+            <rect x="240" y="28" width="8" height="10" rx="3" fill="#10b981" opacity="0.6"/>
+            <rect x="252" y="28" width="8" height="14" rx="3" fill="#10b981" opacity="0.6"/>
+            <!-- camera on gripper -->
+            <circle cx="266" cy="44" r="5" fill="#3b82f6" opacity="0.7"/>
+            <!-- vision system on top -->
+            <rect x="82" y="74" width="76" height="16" rx="4" fill="#0a1628" stroke="#1e3070" stroke-width="0.8"/>
+            <circle cx="96"  cy="82" r="5" fill="#3b82f6" opacity="0.7"/>
+            <circle cx="112" cy="82" r="5" fill="#3b82f6" opacity="0.5"/>
+            <!-- produce collection bin -->
+            <rect x="38" y="60" width="68" height="52" rx="5" fill="#0a1828" stroke="#1a3060" stroke-width="1"/>
+            <rect x="42" y="64" width="60" height="40" rx="3" fill="#061018" opacity="0.8"/>
+            <!-- produce dots -->
+            <circle cx="56" cy="78" r="5" fill="#10b981" opacity="0.4"/>
+            <circle cx="70" cy="84" r="4" fill="#f59e0b" opacity="0.4"/>
+            <circle cx="82" cy="76" r="5" fill="#10b981" opacity="0.3"/>
+            <!-- status LED on turret -->
+            <circle cx="90" cy="95" r="3" fill="#10b981"/>
+            <!-- GPS antenna -->
+            <line x1="120" y1="88" x2="120" y2="72" stroke="#10b981" stroke-width="2"/>
+            <circle cx="120" cy="70" r="3.5" fill="#10b981" opacity="0.8"/>
+          </svg>
+        </div>
+        <div class="card-body">
+          <span class="badge badge-purple card-badge">H-01</span>
+          <p class="card-name">Famtech OmniHarvester</p>
+          <p class="card-desc">Autonomous modular robotic harvester with 6-DOF arm, multi-crop vision AI, and swappable end-effectors.</p>
+          <span class="card-arrow">View Specification <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="display:inline;vertical-align:middle"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- ── FOOTER ──────────────────────────────────────────────── -->
+    <footer class="index-footer">
+      <span>Famtech Industrial Design System &copy; 2026 &mdash; Internal Confidential</span>
+      <span>17 products &middot; AgriCore Hardware Platform &middot; Rev 2.0</span>
+    </footer>
+
+  </div>
+
+  <script>
+    (function(){
+      var bar = document.getElementById('read-progress');
+      if (!bar) return;
+      function upd() {
+        var h = document.documentElement.scrollHeight - window.innerHeight;
+        bar.style.width = (h > 0 ? (window.scrollY / h * 100) : 0) + '%';
+      }
+      window.addEventListener('scroll', upd, {passive:true});
+      upd();
+    })();
+  </script>
+</body>
+</html>

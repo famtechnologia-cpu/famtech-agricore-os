@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Famtech Scout — Famtech Hardware</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.1.1/model-viewer.min.js"></script>
+
+  <style>
+    /* ── Hotspot annotations ─────────────────────────────── */
+    button[slot^="hotspot-"] {
+      background: rgba(0,120,255,0.85);
+      border: 2px solid #44aaff;
+      border-radius: 50%;
+      width: 20px; height: 20px;
+      cursor: pointer; padding: 0;
+      position: relative;
+      transition: background 0.15s, transform 0.15s;
+      box-shadow: 0 0 8px rgba(0,120,255,0.5);
+    }
+    button[slot^="hotspot-"]:hover { transform: scale(1.25); background: rgba(0,160,255,0.95); }
+    button[slot^="hotspot-"]:not([data-visible]) {
+      background: transparent; border-color: transparent; pointer-events: none;
+    }
+    button[slot^="hotspot-"]:not([data-visible]) .hs-label { display: none; }
+    .hs-dot {
+      width: 6px; height: 6px; background: #fff; border-radius: 50%;
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    }
+    .hs-label {
+      background: rgba(4,12,34,0.96);
+      border: 1px solid rgba(0,120,255,0.5);
+      border-left: 3px solid #0088ff;
+      border-radius: 0 5px 5px 0;
+      color: #a8d0ff;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px; font-weight: 500;
+      padding: 4px 12px 4px 8px;
+      position: absolute; left: 26px; top: 50%;
+      transform: translateY(-50%);
+      white-space: nowrap; pointer-events: none;
+      letter-spacing: 0.04em;
+    }
+    /* ── 2D Technical Views ──────────────────────────────── */
+    .views-section { margin: 28px 0 0; }
+    .views-section h2 { margin-bottom: 14px; }
+    .views-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .view-card {
+      background: #060c1b;
+      border: 1px solid #1b2f5e;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .view-card svg { display: block; width: 100%; height: auto; }
+    .view-label-bar {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px; letter-spacing: 0.14em;
+      color: #3355aa; text-align: center;
+      padding: 5px 0 4px;
+      background: #030710;
+      border-bottom: 1px solid #0e1e44;
+      text-transform: uppercase;
+    }
+  </style>
+
+  <style id="illus-css">
+    .illus-section { margin: 28px 0 0; }
+    .illus-section h2 { margin-bottom: 14px; }
+    .illus-wrap {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 0;
+      border: 1px solid #1b2f5e;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #060c1b;
+    }
+    .illus-svg-panel svg { display: block; width: 100%; height: auto; }
+    .illus-labels-panel {
+      background: #080e20;
+      border-left: 1px solid #1b2f5e;
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .illus-product-cat {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      color: #2a4888;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .il-callout {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 0;
+      border-bottom: 1px solid #0e1a36;
+    }
+    .il-callout:last-child { border-bottom: none; }
+    .il-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .il-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      color: #8aaccc;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body>
+  <div id="read-progress"></div>
+<nav class="topnav">
+  <a href="index.html" class="nav-back">← Catalog</a>
+  <span class="nav-brand">Famtech Hardware System · UAV-02</span>
+  <div class="nav-product-jump"><a href="01_spray_x.html" class="nav-jump-btn prev">Spray X</a><a href="03_nest.html" class="nav-jump-btn next">Nest</a></div>
+</nav>
+<div class="container">
+  <div class="hero">
+    <div>
+      <div class="hero-meta">
+        <span class="badge">UAV-02</span>
+        <span class="badge badge-neutral">IP55</span>
+      </div>
+      <h1>Famtech Scout</h1>
+      <p class="hero-desc">Compact folding quadrotor for multispectral crop scouting and precision field mapping.</p>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-chip"><span class="stat-label">Battery</span><span class="stat-value">14.8V 4000mAh Li-Po</span></div>
+      <div class="stat-chip"><span class="stat-label">Runtime</span><span class="stat-value">45 min</span></div>
+      <div class="stat-chip"><span class="stat-label">Power</span><span class="stat-value">Electric Battery</span></div>
+    </div>
+  </div>
+
+  <section>
+    <h2>360° Interactive View</h2>
+    <div class="viewer-panel">
+      <model-viewer camera-controls auto-rotate auto-rotate-delay="800" rotation-per-second="25deg" environment-image="neutral" skybox-height="2m" exposure="1.35" shadow-intensity="2.2" shadow-softness="0.75" tone-mapping="aces" interaction-prompt="auto" interaction-prompt-threshold="500" min-camera-orbit="auto 5deg 0.4m" max-camera-orbit="auto 175deg 20m" camera-orbit="-20deg 72deg auto" src="models/scout.glb">
+        <div slot="poster" class="viewer-poster">
+          <span class="icon">⬡</span>
+          <span>Loading 3D model…</span>
+        </div>
+            <button slot="hotspot-0" data-position="0.000 -0.060 0.010" data-normal="0.0 0.0 1.0" data-visibility-attribute="visible"><div class="hs-dot"></div><div class="hs-label">Multispectral Array</div></button>
+      <button slot="hotspot-1" data-position="0.052 0.004 0.052" data-normal="1.0 0.0 0.0" data-visibility-attribute="visible"><div class="hs-dot"></div><div class="hs-label">Folding Pivot</div></button>
+      <button slot="hotspot-2" data-position="0.000 0.028 0.066" data-normal="0.0 0.0 1.0" data-visibility-attribute="visible"><div class="hs-dot"></div><div class="hs-label">Cooling Intake</div></button>
+      <button slot="hotspot-3" data-position="0.000 -0.040 0.000" data-normal="0.0 -1.0 0.0" data-visibility-attribute="visible"><div class="hs-dot"></div><div class="hs-label">Gimbal Module</div></button>
+    </model-viewer>
+    
+      <div class="viewer-hint">
+        <span class="viewer-hint-pill"><span class="icon">⟳</span>&nbsp;Drag to rotate</span>
+        <span class="viewer-hint-pill"><span class="icon">⊕</span>&nbsp;Scroll to zoom</span>
+        <span class="viewer-hint-pill"><span class="icon">●</span>&nbsp;Tap dots for parts</span>
+      </div>
+</div>
+  </section>
+  <section class="views-section">
+    <h2>2D Technical Views</h2>
+    <div class="views-grid">
+      <div class="view-card"><div class="view-label-bar">Front View</div><svg viewBox="0 0 260 192" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="g" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20,0L0,0L0,20" fill="none" stroke="#0d1a38" stroke-width=".6"/></pattern></defs><rect width="260" height="192" fill="#060c1b"/><rect width="260" height="192" fill="url(#g)"/><line x1="130.0" y1="10.0" x2="130.0" y2="182.0" stroke="#1a3060" stroke-width="0.6" stroke-dasharray="6,3,2,3"/><line x1="10.0" y1="96.0" x2="250.0" y2="96.0" stroke="#1a3060" stroke-width="0.6" stroke-dasharray="6,3,2,3"/><rect x="98.0" y="82.0" width="64.0" height="28.0" rx="4" fill="rgba(18,56,130,0.22)" stroke="#2a7ad9" stroke-width="1.2"/><rect x="106.0" y="76.0" width="48.0" height="10.0" rx="2" fill="rgba(8,20,60,0.55)" stroke="#00cc88" stroke-width="1.2"/><line x1="185.2" y1="151.2" x2="154.7" y2="120.7" stroke="#2a7ad9" stroke-width="1.2"/><line x1="74.8" y1="151.2" x2="105.3" y2="120.7" stroke="#2a7ad9" stroke-width="1.2"/><line x1="74.8" y1="40.8" x2="105.3" y2="71.3" stroke="#2a7ad9" stroke-width="1.2"/><line x1="185.2" y1="40.8" x2="154.7" y2="71.3" stroke="#2a7ad9" stroke-width="1.2"/><circle cx="185.2" cy="151.2" r="10.0" fill="rgba(8,20,60,0.55)" stroke="#00cc88" stroke-width="1.2"/><circle cx="74.8" cy="151.2" r="10.0" fill="rgba(8,20,60,0.55)" stroke="#00cc88" stroke-width="1.2"/><circle cx="74.8" cy="40.8" r="10.0" fill="rgba(8,20,60,0.55)" stroke="#00cc88" stroke-width="1.2"/><circle cx="185.2" cy="40.8" r="10.0" fill="rgba(8,20,60,0.55)" stroke="#00cc88" stroke-width="1.2"/><circle cx="130.0" cy="116.0" r="10.0" fill="rgba(0,180,100,0.20)" stroke="#00cc88" stroke-width="1.2"/><rect x="114.0" y="124.0" width="32.0" height="16.0" rx="3" fill="rgba(18,56,130,0.22)" stroke="#2a7ad9" stroke-width="1.2"/><line x1="52.0" y1="148.0" x2="52.0" y2="139.0" stroke="#3a6aaa" stroke-width="0.5"/><line x1="208.0" y1="148.0" x2="208.0" y2="139.0" stroke="#3a6aaa" stroke-width="0.5"/><line x1="52.0" y1="139.0" x2="208.0" y2="139.0" stroke="#3a6aaa" stroke-width="0.8"/><text x="130.0" y="136.0" text-anchor="middle" font-family="monospace" font-size="7" fill="#3a6aaa">340mm</text><line x1="220.0" y1="32.0" x2="130.0" y2="116.0" stroke="#ff8c00" stroke-width="0.8" stroke-dasharray="3,2"/><circle cx="220.0" cy="32.0" r="7.5" fill="#ff8c00"/><text x="220.0" y="35.5" text-anchor="middle" font-family="monospace" font-size="8" fill="#fff" font-weight="bold">1</text><line x1="220.0" y1="62.0" x2="168.0" y2="100.0" stroke="#ff8c00" stroke-width="0.8" stroke-dasharray="3,2"/><circle cx="220.0" cy="62.0" r="7.5" fill="#ff8c00"/><text x="220.0" y="65.5" text-anchor="middle" font-family="monospace" font-size="8" fill="#fff" font-weight="bold">2</text><line x1="220.0" y1="92.0" x2="130.0" y2="76.0" stroke="#ff8c00" stroke-width="0.8" stroke-dasharray="3,2"/><circle cx="220.0" cy="92.0" r="7.5" fill="#ff8c00"/><text x="220.0" y="95.5" text-anchor="middle" font-family="monospace" font-size="8" fill="#fff" font-weight="bold">3</text><line x1="220.0" y1="122.0" x2="155.0" y2="88.0" stroke="#ff8c00" stroke-width="0.8" stroke-dasharray="3,2"/><circle cx="220.0" cy="122.0" r="7.5" fill="#ff8c00"/><text x="220.0" y="125.5" text-anchor="middle" font-family="monospace" font-size="8" fill="#fff" font-weight="bold">4</text><text x="130.0" y="185.0" text-anchor="middle" font-family="monospace" font-size="7" fill="#3a6aaa">FRONT VIEW</text></svg></div>
+      <div class="view-card"><div class="view-label-bar">Side View</div><svg viewBox="0 0 260 192" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="g" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20,0L0,0L0,20" fill="none" stroke="#0d1a38" stroke-width=".6"/></pattern></defs><rect width="260" height="192" fill="#060c1b"/><rect width="260" height="192" fill="url(#g)"/><rect x="90.0" y="82.0" width="80.0" height="28.0" rx="4" fill="rgba(18,56,130,0.22)" stroke="#2a7ad9" stroke-width="1.2"/><rect x="98.0" y="76.0" width="64.0" height="10.0" rx="2" fill="rgba(8,20,60,0.55)" stroke="#00cc88" stroke-width="1.2"/><circle cx="130.0" cy="116.0" r="10.0" fill="rgba(0,180,100,0.20)" stroke="#00cc88" stroke-width="1.2"/><rect x="107.0" y="124.0" width="46.0" height="16.0" rx="3" fill="rgba(18,56,130,0.22)" stroke="#2a7ad9" stroke-width="1.2"/><line x1="130.0" y1="108.0" x2="130.0" y2="130.0" stroke="#1a5aaa" stroke-width="1.0"/><line x1="170.0" y1="82.0" x2="179.0" y2="82.0" stroke="#3a6aaa" stroke-width="0.5"/><line x1="170.0" y1="110.0" x2="179.0" y2="110.0" stroke="#3a6aaa" stroke-width="0.5"/><line x1="179.0" y1="82.0" x2="179.0" y2="110.0" stroke="#3a6aaa" stroke-width="0.8"/><text x="183.0" y="99.0" text-anchor="start" font-family="monospace" font-size="7" fill="#3a6aaa">110mm</text><text x="130.0" y="185.0" text-anchor="middle" font-family="monospace" font-size="7" fill="#3a6aaa">SIDE VIEW</text></svg></div>
+      <div class="view-card"><div class="view-label-bar">Top View</div><svg viewBox="0 0 260 192" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="g" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20,0L0,0L0,20" fill="none" stroke="#0d1a38" stroke-width=".6"/></pattern></defs><rect width="260" height="192" fill="#060c1b"/><rect width="260" height="192" fill="url(#g)"/><rect x="88.0" y="76.0" width="84.0" height="88.0" rx="6" fill="rgba(18,56,130,0.22)" stroke="#2a7ad9" stroke-width="1.2"/><line x1="185.2" y1="151.2" x2="159.7" y2="125.7" stroke="#2a7ad9" stroke-width="1.2"/><line x1="74.8" y1="151.2" x2="100.3" y2="125.7" stroke="#2a7ad9" stroke-width="1.2"/><line x1="74.8" y1="40.8" x2="100.3" y2="66.3" stroke="#2a7ad9" stroke-width="1.2"/><line x1="185.2" y1="40.8" x2="159.7" y2="66.3" stroke="#2a7ad9" stroke-width="1.2"/><circle cx="185.2" cy="151.2" r="10.0" fill="rgba(8,20,60,0.55)" stroke="#00cc88" stroke-width="1.2"/><circle cx="74.8" cy="151.2" r="10.0" fill="rgba(8,20,60,0.55)" stroke="#00cc88" stroke-width="1.2"/><circle cx="74.8" cy="40.8" r="10.0" fill="rgba(8,20,60,0.55)" stroke="#00cc88" stroke-width="1.2"/><circle cx="185.2" cy="40.8" r="10.0" fill="rgba(8,20,60,0.55)" stroke="#00cc88" stroke-width="1.2"/><line x1="52.0" y1="25.0" x2="52.0" y2="16.0" stroke="#3a6aaa" stroke-width="0.5"/><line x1="208.0" y1="25.0" x2="208.0" y2="16.0" stroke="#3a6aaa" stroke-width="0.5"/><line x1="52.0" y1="16.0" x2="208.0" y2="16.0" stroke="#3a6aaa" stroke-width="0.8"/><text x="130.0" y="13.0" text-anchor="middle" font-family="monospace" font-size="7" fill="#3a6aaa">340mm</text><text x="130.0" y="185.0" text-anchor="middle" font-family="monospace" font-size="7" fill="#3a6aaa">TOP VIEW</text></svg></div>
+    </div>
+  </section>
+  <section class="illus-section">
+    <h2>Product Illustration</h2>
+    <div class="illus-wrap">
+      <div class="illus-svg-panel"><svg viewBox="0 0 520 380" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="ig" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24,0L0,0L0,24" fill="none" stroke="#0c1630" stroke-width="0.5"/></pattern></defs><rect width="520" height="380" fill="#060c1b"/><rect width="520" height="380" fill="url(#ig)" opacity="0.6"/><polygon points="183.9,194.4 192.5,199.4 192.5,191.9 183.9,187.0" fill="#1c2030" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><polygon points="165.4,177.5 211.1,203.9 211.1,202.6 165.4,176.3" fill="#22242a" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><polygon points="192.5,199.4 190.4,200.6 190.4,193.2 192.5,191.9" fill="#0c1020" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><polygon points="211.1,203.9 199.6,210.5 199.6,209.2 211.1,202.6" fill="#10121a" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><ellipse cx="188.2" cy="189.5" rx="5.0" ry="1.5" fill="#2c303c" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><ellipse cx="188.2" cy="189.5" rx="26.4" ry="7.9" fill="#363840" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><polygon points="209.1,179.8 236.0,195.3 209.1,210.8 182.3,195.3" fill="#363840" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="209.1,184.5 236.0,200.0 236.0,195.3 209.1,179.8" fill="#22242a" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="236.0,200.0 209.1,215.5 209.1,210.8 236.0,195.3" fill="#10121a" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="219.3,216.4 224.6,219.5 224.6,213.3 219.3,210.2" fill="#88c0e2" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><polygon points="224.6,197.8 238.1,205.6 227.3,211.8 213.9,204.0" fill="#2c303c" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="224.6,207.8 238.1,215.5 238.1,205.6 224.6,197.8" fill="#1c2030" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="238.1,215.5 227.3,221.7 227.3,211.8 238.1,205.6" fill="#0c1020" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="224.6,219.5 223.3,220.3 223.3,214.1 224.6,213.3" fill="#4882b8" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><ellipse cx="221.9" cy="211.8" rx="3.1" ry="0.9" fill="#c4e4f6" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><polygon points="230.0,167.8 256.8,183.3 230.0,198.8 203.2,183.3" fill="#363840" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="230.0,172.4 256.8,187.9 256.8,183.3 230.0,167.8" fill="#22242a" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="256.8,187.9 230.0,203.4 230.0,198.8 256.8,183.3" fill="#10121a" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="225.7,170.3 234.3,175.3 234.3,167.8 225.7,162.9" fill="#1c2030" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><polygon points="207.2,153.4 252.8,179.8 252.8,178.5 207.2,152.2" fill="#22242a" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><polygon points="230.0,169.9 264.9,190.1 230.0,210.2 195.1,190.1" fill="#2c303c" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="230.0,188.5 264.9,208.7 264.9,190.1 230.0,169.9" fill="#1c2030" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="264.9,208.7 230.0,228.8 230.0,210.2 264.9,190.1" fill="#0c1020" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="230.0,166.8 259.5,183.9 230.0,200.9 200.5,183.9" fill="#363840" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="230.0,173.0 259.5,190.1 259.5,183.9 230.0,166.8" fill="#22242a" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="259.5,190.1 230.0,207.1 230.0,200.9 259.5,183.9" fill="#10121a" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="230.0,191.9 256.8,207.4 230.0,222.9 203.2,207.4" fill="#363840" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="230.0,196.6 256.8,212.1 256.8,207.4 230.0,191.9" fill="#22242a" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="256.8,212.1 230.0,227.6 230.0,222.9 256.8,207.4" fill="#10121a" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="225.7,218.5 234.3,223.5 234.3,216.1 225.7,211.1" fill="#1c2030" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><polygon points="207.2,201.6 252.8,228.0 252.8,226.7 207.2,200.4" fill="#22242a" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><polygon points="234.3,175.3 232.1,176.5 232.1,169.1 234.3,167.8" fill="#0c1020" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><polygon points="252.8,179.8 241.4,186.4 241.4,185.1 252.8,178.5" fill="#10121a" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><polygon points="234.3,223.5 232.1,224.7 232.1,217.3 234.3,216.1" fill="#0c1020" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><polygon points="252.8,228.0 241.4,234.6 241.4,233.3 252.8,226.7" fill="#10121a" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><ellipse cx="230.0" cy="165.3" rx="5.0" ry="1.5" fill="#2c303c" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><ellipse cx="230.0" cy="165.3" rx="26.4" ry="7.9" fill="#363840" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><ellipse cx="230.0" cy="213.6" rx="5.0" ry="1.5" fill="#2c303c" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><ellipse cx="230.0" cy="213.6" rx="26.4" ry="7.9" fill="#363840" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><polygon points="250.9,179.8 277.7,195.3 250.9,210.8 224.0,195.3" fill="#363840" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="250.9,184.5 277.7,200.0 277.7,195.3 250.9,179.8" fill="#22242a" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="277.7,200.0 250.9,215.5 250.9,210.8 277.7,195.3" fill="#10121a" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="267.5,194.4 276.1,199.4 276.1,191.9 267.5,187.0" fill="#1c2030" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><polygon points="248.9,177.5 294.6,203.9 294.6,202.6 248.9,176.3" fill="#22242a" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><polygon points="276.1,199.4 273.9,200.6 273.9,193.2 276.1,191.9" fill="#0c1020" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><polygon points="294.6,203.9 283.2,210.5 283.2,209.2 294.6,202.6" fill="#10121a" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><ellipse cx="271.8" cy="189.5" rx="5.0" ry="1.5" fill="#2c303c" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><ellipse cx="271.8" cy="189.5" rx="26.4" ry="7.9" fill="#363840" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/></svg></div>
+      <div class="illus-labels-panel">
+        <div class="illus-product-cat">UAV-02  ·  Folding Scout Quadrotor</div>
+        <div class="il-callout"><span class="il-num" style="background:#0088ff">1</span><span class="il-text">Main Frame</span></div><div class="il-callout"><span class="il-num" style="background:#0088ff">2</span><span class="il-text">Multispectral Camera</span></div><div class="il-callout"><span class="il-num" style="background:#00cc88">3</span><span class="il-text">Folding Arm</span></div><div class="il-callout"><span class="il-num" style="background:#ff8c00">4</span><span class="il-text">Propeller</span></div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <div class="grid grid-2">
+    <section>
+      <h2><span class="section-num">01</span> Industrial Design Brief</h2>
+      <div class="panel">
+        <div class="brief-grid">
+          <div class="brief-row"><span class="brief-label">Product</span><span class="brief-value">Famtech Scout</span></div>
+          <div class="brief-row"><span class="brief-label">Category</span><span class="brief-value">DRONE</span></div>
+          <div class="brief-row"><span class="brief-label">Role</span><span class="brief-value">Crop Scouting & Mapping</span></div>
+          <div class="brief-row"><span class="brief-label">Target User</span><span class="brief-value">Agronomists</span></div>
+          <div class="brief-row"><span class="brief-label">Environment</span><span class="brief-value">Global</span></div>
+          <div class="brief-row"><span class="brief-label">Form Factor</span><span class="brief-value">Folding Quadrotor</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="section-num">02</span> Product Specification</h2>
+      <div class="panel">
+        <table class="spec-table">
+          <tr><th>Power System</th><td>Electric Battery</td></tr>
+          <tr><th>Battery</th><td>14.8V 4000mAh Li-Po</td></tr>
+          <tr><th>Runtime</th><td>45 min</td></tr>
+          <tr><th>Connectivity</th><td>RTK GPS, OcuSync, 4G</td></tr>
+          <tr><th>Sensor Suite</th><td>RGB, Multispectral, Thermal</td></tr>
+          <tr><th>Ingress Protection</th><td>IP55</td></tr>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <div class="grid grid-3">
+    <section>
+      <h2><span class="section-num">03</span> Dimensions</h2>
+      <div class="panel">
+        <table class="spec-table">
+          <tr><th>L × W × H</th><td>340 × 340 × 110 mm</td></tr>
+          <tr><th>Ground Clearance</th><td>45 mm</td></tr>
+        </table>
+      </div>
+    </section>
+    <section>
+      <h2><span class="section-num">06</span> Mechanical Architecture</h2>
+      <div class="panel"><p>Die-cast magnesium inner frame, folding pivots with internal cable routing, suspended gimbal damping</p></div>
+    </section>
+    <section>
+      <h2><span class="section-num">07</span> Materials & Finishes</h2>
+      <div class="panel"><p>Magnesium alloy frame, carbon composite arms, polycarbonate domes, TPU legs</p></div>
+    </section>
+  </div>
+
+  <section>
+    <h2><span class="section-num">05</span> Component Map</h2>
+    <div class="panel">
+      <div class="comp-grid"><span class="comp-chip">Compute Core</span><span class="comp-chip">Folding Arms</span><span class="comp-chip">Gimbal Module</span><span class="comp-chip">Vision Sensors</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="section-num">08</span> Fusion Build Sequence</h2>
+    <div class="panel">
+      <ul class="fusion-list"><li>Main_Frame</li><li>Gimbal_Assy</li><li>Folding_Mechanism</li><li>Top_Shell</li></ul>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="section-num">09</span> Rendering Instructions</h2>
+    <div class="panel"><p><strong>Style:</strong> Premium industrial PBR, dark studio background, realistic shadows &amp; reflections.</p><p><strong>Required Views:</strong> Front 3/4 Hero, Folded Transport, Gimbal Detail</p></div>
+  </section>
+
+  <section>
+    <h2><span class="section-num">10</span> Annotation / Callout List</h2>
+    <div class="panel"><div class="ann-list"><span class="ann-tag">Multispectral Array</span><span class="ann-tag">Folding Pivot</span><span class="ann-tag">Cooling Intake</span></div></div>
+  </section>
+
+  <section>
+    <div class="risk-panel">
+      <h2><span class="section-num" style="background:rgba(239,68,68,0.15);color:#ef4444;">11</span> Engineering Risks & Unknowns</h2>
+      <ul class="risk-list"><li>Dust ingress in gimbal</li><li>Thermal throttling in sun</li></ul>
+    </div>
+  </section>
+
+  <div class="grid grid-2">
+    <section>
+      <h2><span class="section-num">12</span> Manufacturing Notes</h2>
+      <div class="panel"><p>Die-cast magnesium frame, molded composite arms, vacuum-formed optical covers</p></div>
+    </section>
+    <section>
+      <h2><span class="section-num">13</span> Maintenance & Serviceability</h2>
+      <div class="panel"><p>Dust ingress in gimbal. Die-cast magnesium frame, molded composite arms, vacuum-formed optical covers</p></div>
+    </section>
+  </div>
+
+  <footer class="site-footer">
+    <span class="footer-brand">Famtech Industrial Design System &copy; 2026 &mdash; Internal Confidential</span>
+    <nav class="product-footer-nav">
+      <a href="01_spray_x.html" class="prev">Spray X</a>
+      <a href="03_nest.html" class="next">Nest</a>
+    </nav>
+  </footer>
+</div>
+  <script>
+    (function(){
+      var bar = document.getElementById('read-progress');
+      if (!bar) return;
+      function upd() {
+        var h = document.documentElement.scrollHeight - window.innerHeight;
+        bar.style.width = (h > 0 ? (window.scrollY / h * 100) : 0) + '%';
+      }
+      window.addEventListener('scroll', upd, {passive:true});
+      upd();
+    })();
+  </script>
+</body>
+</html>

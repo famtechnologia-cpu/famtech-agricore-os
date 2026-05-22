@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Famtech Hub — Famtech Hardware</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.1.1/model-viewer.min.js"></script>
+
+  <style>
+    /* ── Hotspot annotations ─────────────────────────────── */
+    button[slot^="hotspot-"] {
+      background: rgba(0,120,255,0.85);
+      border: 2px solid #44aaff;
+      border-radius: 50%;
+      width: 20px; height: 20px;
+      cursor: pointer; padding: 0;
+      position: relative;
+      transition: background 0.15s, transform 0.15s;
+      box-shadow: 0 0 8px rgba(0,120,255,0.5);
+    }
+    button[slot^="hotspot-"]:hover { transform: scale(1.25); background: rgba(0,160,255,0.95); }
+    button[slot^="hotspot-"]:not([data-visible]) {
+      background: transparent; border-color: transparent; pointer-events: none;
+    }
+    button[slot^="hotspot-"]:not([data-visible]) .hs-label { display: none; }
+    .hs-dot {
+      width: 6px; height: 6px; background: #fff; border-radius: 50%;
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    }
+    .hs-label {
+      background: rgba(4,12,34,0.96);
+      border: 1px solid rgba(0,120,255,0.5);
+      border-left: 3px solid #0088ff;
+      border-radius: 0 5px 5px 0;
+      color: #a8d0ff;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px; font-weight: 500;
+      padding: 4px 12px 4px 8px;
+      position: absolute; left: 26px; top: 50%;
+      transform: translateY(-50%);
+      white-space: nowrap; pointer-events: none;
+      letter-spacing: 0.04em;
+    }
+    /* ── 2D Technical Views ──────────────────────────────── */
+    .views-section { margin: 28px 0 0; }
+    .views-section h2 { margin-bottom: 14px; }
+    .views-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .view-card {
+      background: #060c1b;
+      border: 1px solid #1b2f5e;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .view-card svg { display: block; width: 100%; height: auto; }
+    .view-label-bar {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px; letter-spacing: 0.14em;
+      color: #3355aa; text-align: center;
+      padding: 5px 0 4px;
+      background: #030710;
+      border-bottom: 1px solid #0e1e44;
+      text-transform: uppercase;
+    }
+  </style>
+
+  <style id="illus-css">
+    .illus-section { margin: 28px 0 0; }
+    .illus-section h2 { margin-bottom: 14px; }
+    .illus-wrap {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 0;
+      border: 1px solid #1b2f5e;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #060c1b;
+    }
+    .illus-svg-panel svg { display: block; width: 100%; height: auto; }
+    .illus-labels-panel {
+      background: #080e20;
+      border-left: 1px solid #1b2f5e;
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .illus-product-cat {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      color: #2a4888;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .il-callout {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 0;
+      border-bottom: 1px solid #0e1a36;
+    }
+    .il-callout:last-child { border-bottom: none; }
+    .il-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .il-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      color: #8aaccc;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body>
+  <div id="read-progress"></div>
+<nav class="topnav">
+  <a href="index.html" class="nav-back">← Catalog</a>
+  <span class="nav-brand">Famtech Hardware System · SYS-02</span>
+  <div class="nav-product-jump"><a href="09_fencegrid.html" class="nav-jump-btn prev">Fencegrid</a><a href="11_crewlink.html" class="nav-jump-btn next">CrewLink</a></div>
+</nav>
+<div class="container">
+  <div class="hero">
+    <div>
+      <div class="hero-meta">
+        <span class="badge">SYS-02</span>
+        <span class="badge badge-neutral">IP54</span>
+      </div>
+      <h1>Famtech Hub</h1>
+      <p class="hero-desc">Farm edge AI gateway and compute node for local inference, data aggregation, and cloud connectivity.</p>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-chip"><span class="stat-label">Battery</span><span class="stat-value">24V 10Ah UPS</span></div>
+      <div class="stat-chip"><span class="stat-label">Runtime</span><span class="stat-value">2 hours offline</span></div>
+      <div class="stat-chip"><span class="stat-label">Power</span><span class="stat-value">Mains</span></div>
+    </div>
+  </div>
+
+  <section>
+    <h2>360° Interactive View</h2>
+    <div class="viewer-panel">
+      <model-viewer camera-controls auto-rotate auto-rotate-delay="800" rotation-per-second="25deg" environment-image="neutral" skybox-height="2m" exposure="1.35" shadow-intensity="2.2" shadow-softness="0.75" tone-mapping="aces" interaction-prompt="auto" interaction-prompt-threshold="500" min-camera-orbit="auto 5deg 0.4m" max-camera-orbit="auto 175deg 20m" camera-orbit="-35deg 68deg auto" src="models/hub.glb">
+        <div slot="poster" class="viewer-poster">
+          <span class="icon">⬡</span>
+          <span>Loading 3D model…</span>
+        </div>
+            <button slot="hotspot-0" data-position="0.000 0.020 0.085" data-normal="0.0 0.0 1.0" data-visibility-attribute="visible"><div class="hs-dot"></div><div class="hs-label">Antenna Array</div></button>
+      <button slot="hotspot-1" data-position="0.215 0.000 0.000" data-normal="1.0 0.0 0.0" data-visibility-attribute="visible"><div class="hs-dot"></div><div class="hs-label">Cooling Vents</div></button>
+      <button slot="hotspot-2" data-position="-0.215 0.000 0.000" data-normal="-1.0 0.0 0.0" data-visibility-attribute="visible"><div class="hs-dot"></div><div class="hs-label">Industrial I/O</div></button>
+    </model-viewer>
+    
+      <div class="viewer-hint">
+        <span class="viewer-hint-pill"><span class="icon">⟳</span>&nbsp;Drag to rotate</span>
+        <span class="viewer-hint-pill"><span class="icon">⊕</span>&nbsp;Scroll to zoom</span>
+        <span class="viewer-hint-pill"><span class="icon">●</span>&nbsp;Tap dots for parts</span>
+      </div>
+</div>
+  </section>
+  <section class="views-section">
+    <h2>2D Technical Views</h2>
+    <div class="views-grid">
+      <div class="view-card"><div class="view-label-bar">Front View</div><svg viewBox="0 0 260 192" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="g" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20,0L0,0L0,20" fill="none" stroke="#0d1a38" stroke-width=".6"/></pattern></defs><rect width="260" height="192" fill="#060c1b"/><rect width="260" height="192" fill="url(#g)"/><line x1="130.0" y1="10.0" x2="130.0" y2="182.0" stroke="#1a3060" stroke-width="0.6" stroke-dasharray="6,3,2,3"/><rect x="58.0" y="72.0" width="144.0" height="56.0" fill="rgba(18,56,130,0.22)" stroke="#2a7ad9" stroke-width="1.2" rx="1"/><line x1="74.0" y1="68.0" x2="74.0" y2="58.0" stroke="#1a5aaa" stroke-width="0.8"/><line x1="88.0" y1="68.0" x2="88.0" y2="58.0" stroke="#1a5aaa" stroke-width="0.8"/><line x1="102.0" y1="68.0" x2="102.0" y2="58.0" stroke="#1a5aaa" stroke-width="0.8"/><line x1="116.0" y1="68.0" x2="116.0" y2="58.0" stroke="#1a5aaa" stroke-width="0.8"/><line x1="130.0" y1="68.0" x2="130.0" y2="58.0" stroke="#1a5aaa" stroke-width="0.8"/><line x1="144.0" y1="68.0" x2="144.0" y2="58.0" stroke="#1a5aaa" stroke-width="0.8"/><line x1="158.0" y1="68.0" x2="158.0" y2="58.0" stroke="#1a5aaa" stroke-width="0.8"/><line x1="172.0" y1="68.0" x2="172.0" y2="58.0" stroke="#1a5aaa" stroke-width="0.8"/><line x1="186.0" y1="68.0" x2="186.0" y2="58.0" stroke="#1a5aaa" stroke-width="0.8"/><circle cx="74.0" cy="58.0" r="4.0" fill="rgba(30,100,200,0.18)" stroke="#00cc88" stroke-width="1.2"/><circle cx="88.0" cy="58.0" r="4.0" fill="rgba(30,100,200,0.18)" stroke="#00cc88" stroke-width="1.2"/><circle cx="102.0" cy="58.0" r="4.0" fill="rgba(30,100,200,0.18)" stroke="#00cc88" stroke-width="1.2"/><circle cx="116.0" cy="58.0" r="4.0" fill="rgba(30,100,200,0.18)" stroke="#00cc88" stroke-width="1.2"/><circle cx="130.0" cy="58.0" r="4.0" fill="rgba(30,100,200,0.18)" stroke="#00cc88" stroke-width="1.2"/><circle cx="144.0" cy="58.0" r="4.0" fill="rgba(30,100,200,0.18)" stroke="#00cc88" stroke-width="1.2"/><circle cx="158.0" cy="58.0" r="4.0" fill="rgba(30,100,200,0.18)" stroke="#00cc88" stroke-width="1.2"/><circle cx="172.0" cy="58.0" r="4.0" fill="rgba(30,100,200,0.18)" stroke="#00cc88" stroke-width="1.2"/><circle cx="186.0" cy="58.0" r="4.0" fill="rgba(30,100,200,0.18)" stroke="#00cc88" stroke-width="1.2"/><rect x="52.0" y="80.0" width="8.0" height="6.0" fill="rgba(8,20,60,0.55)" stroke="#1a5aaa" stroke-width="1.2" rx="1"/><rect x="52.0" y="90.0" width="8.0" height="6.0" fill="rgba(8,20,60,0.55)" stroke="#1a5aaa" stroke-width="1.2" rx="1"/><rect x="52.0" y="100.0" width="8.0" height="6.0" fill="rgba(8,20,60,0.55)" stroke="#1a5aaa" stroke-width="1.2" rx="1"/><rect x="52.0" y="110.0" width="8.0" height="6.0" fill="rgba(8,20,60,0.55)" stroke="#1a5aaa" stroke-width="1.2" rx="1"/><rect x="200.0" y="80.0" width="8.0" height="4.0" fill="rgba(8,20,60,0.55)" stroke="#1a5aaa" stroke-width="1.2" rx="1"/><rect x="200.0" y="90.0" width="8.0" height="4.0" fill="rgba(8,20,60,0.55)" stroke="#1a5aaa" stroke-width="1.2" rx="1"/><rect x="200.0" y="100.0" width="8.0" height="4.0" fill="rgba(8,20,60,0.55)" stroke="#1a5aaa" stroke-width="1.2" rx="1"/><rect x="200.0" y="110.0" width="8.0" height="4.0" fill="rgba(8,20,60,0.55)" stroke="#1a5aaa" stroke-width="1.2" rx="1"/><circle cx="80.0" cy="80.0" r="3.0" fill="rgba(0,180,100,0.20)" stroke="#00cc88" stroke-width="1.2"/><circle cx="92.0" cy="80.0" r="3.0" fill="rgba(0,180,100,0.20)" stroke="#00cc88" stroke-width="1.2"/><circle cx="104.0" cy="80.0" r="3.0" fill="rgba(0,180,100,0.20)" stroke="#00cc88" stroke-width="1.2"/><circle cx="116.0" cy="80.0" r="3.0" fill="rgba(0,180,100,0.20)" stroke="#00cc88" stroke-width="1.2"/><circle cx="128.0" cy="80.0" r="3.0" fill="rgba(0,180,100,0.20)" stroke="#00cc88" stroke-width="1.2"/><line x1="58.0" y1="145.0" x2="58.0" y2="136.0" stroke="#3a6aaa" stroke-width="0.5"/><line x1="202.0" y1="145.0" x2="202.0" y2="136.0" stroke="#3a6aaa" stroke-width="0.5"/><line x1="58.0" y1="136.0" x2="202.0" y2="136.0" stroke="#3a6aaa" stroke-width="0.8"/><text x="130.0" y="133.0" text-anchor="middle" font-family="monospace" font-size="7" fill="#3a6aaa">420mm</text><line x1="215.0" y1="72.0" x2="224.0" y2="72.0" stroke="#3a6aaa" stroke-width="0.5"/><line x1="215.0" y1="128.0" x2="224.0" y2="128.0" stroke="#3a6aaa" stroke-width="0.5"/><line x1="224.0" y1="72.0" x2="224.0" y2="128.0" stroke="#3a6aaa" stroke-width="0.8"/><text x="228.0" y="103.0" text-anchor="start" font-family="monospace" font-size="7" fill="#3a6aaa">160mm</text><line x1="28.0" y1="28.0" x2="130.0" y2="58.0" stroke="#ff8c00" stroke-width="0.8" stroke-dasharray="3,2"/><circle cx="28.0" cy="28.0" r="7.5" fill="#ff8c00"/><text x="28.0" y="31.5" text-anchor="middle" font-family="monospace" font-size="8" fill="#fff" font-weight="bold">1</text><line x1="28.0" y1="58.0" x2="203.0" y2="100.0" stroke="#ff8c00" stroke-width="0.8" stroke-dasharray="3,2"/><circle cx="28.0" cy="58.0" r="7.5" fill="#ff8c00"/><text x="28.0" y="61.5" text-anchor="middle" font-family="monospace" font-size="8" fill="#fff" font-weight="bold">2</text><line x1="28.0" y1="88.0" x2="47.0" y2="100.0" stroke="#ff8c00" stroke-width="0.8" stroke-dasharray="3,2"/><circle cx="28.0" cy="88.0" r="7.5" fill="#ff8c00"/><text x="28.0" y="91.5" text-anchor="middle" font-family="monospace" font-size="8" fill="#fff" font-weight="bold">3</text><text x="130.0" y="185.0" text-anchor="middle" font-family="monospace" font-size="7" fill="#3a6aaa">FRONT VIEW</text></svg></div>
+      <div class="view-card"><div class="view-label-bar">Side View</div><svg viewBox="0 0 260 192" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="g" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20,0L0,0L0,20" fill="none" stroke="#0d1a38" stroke-width=".6"/></pattern></defs><rect width="260" height="192" fill="#060c1b"/><rect width="260" height="192" fill="url(#g)"/><rect x="82.0" y="72.0" width="96.0" height="56.0" fill="rgba(18,56,130,0.22)" stroke="#2a7ad9" stroke-width="1.2" rx="1"/><rect x="94.0" y="68.0" width="4.0" height="5.0" fill="rgba(8,20,60,0.55)" stroke="#00cc88" stroke-width="1.2" rx="1"/><rect x="102.0" y="68.0" width="4.0" height="5.0" fill="rgba(8,20,60,0.55)" stroke="#00cc88" stroke-width="1.2" rx="1"/><rect x="110.0" y="68.0" width="4.0" height="5.0" fill="rgba(8,20,60,0.55)" stroke="#00cc88" stroke-width="1.2" rx="1"/><rect x="118.0" y="68.0" width="4.0" height="5.0" fill="rgba(8,20,60,0.55)" stroke="#00cc88" stroke-width="1.2" rx="1"/><rect x="126.0" y="68.0" width="4.0" height="5.0" fill="rgba(8,20,60,0.55)" stroke="#00cc88" stroke-width="1.2" rx="1"/><rect x="78.0" y="80.0" width="6.0" height="4.0" fill="rgba(8,20,60,0.55)" stroke="#1a5aaa" stroke-width="1.2" rx="1"/><rect x="78.0" y="90.0" width="6.0" height="4.0" fill="rgba(8,20,60,0.55)" stroke="#1a5aaa" stroke-width="1.2" rx="1"/><rect x="78.0" y="100.0" width="6.0" height="4.0" fill="rgba(8,20,60,0.55)" stroke="#1a5aaa" stroke-width="1.2" rx="1"/><rect x="78.0" y="110.0" width="6.0" height="4.0" fill="rgba(8,20,60,0.55)" stroke="#1a5aaa" stroke-width="1.2" rx="1"/><line x1="190.0" y1="72.0" x2="199.0" y2="72.0" stroke="#3a6aaa" stroke-width="0.5"/><line x1="190.0" y1="128.0" x2="199.0" y2="128.0" stroke="#3a6aaa" stroke-width="0.5"/><line x1="199.0" y1="72.0" x2="199.0" y2="128.0" stroke="#3a6aaa" stroke-width="0.8"/><text x="203.0" y="103.0" text-anchor="start" font-family="monospace" font-size="7" fill="#3a6aaa">160mm</text><text x="130.0" y="185.0" text-anchor="middle" font-family="monospace" font-size="7" fill="#3a6aaa">SIDE VIEW</text></svg></div>
+      <div class="view-card"><div class="view-label-bar">Top View</div><svg viewBox="0 0 260 192" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="g" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20,0L0,0L0,20" fill="none" stroke="#0d1a38" stroke-width=".6"/></pattern></defs><rect width="260" height="192" fill="#060c1b"/><rect width="260" height="192" fill="url(#g)"/><rect x="58.0" y="68.0" width="144.0" height="64.0" fill="rgba(18,56,130,0.22)" stroke="#2a7ad9" stroke-width="1.2" rx="1"/><line x1="72.0" y1="68.0" x2="72.0" y2="62.0" stroke="#1a5aaa" stroke-width="0.8"/><line x1="88.0" y1="68.0" x2="88.0" y2="62.0" stroke="#1a5aaa" stroke-width="0.8"/><line x1="104.0" y1="68.0" x2="104.0" y2="62.0" stroke="#1a5aaa" stroke-width="0.8"/><line x1="120.0" y1="68.0" x2="120.0" y2="62.0" stroke="#1a5aaa" stroke-width="0.8"/><line x1="136.0" y1="68.0" x2="136.0" y2="62.0" stroke="#1a5aaa" stroke-width="0.8"/><line x1="152.0" y1="68.0" x2="152.0" y2="62.0" stroke="#1a5aaa" stroke-width="0.8"/><line x1="168.0" y1="68.0" x2="168.0" y2="62.0" stroke="#1a5aaa" stroke-width="0.8"/><line x1="184.0" y1="68.0" x2="184.0" y2="62.0" stroke="#1a5aaa" stroke-width="0.8"/><line x1="200.0" y1="68.0" x2="200.0" y2="62.0" stroke="#1a5aaa" stroke-width="0.8"/><line x1="58.0" y1="42.0" x2="58.0" y2="33.0" stroke="#3a6aaa" stroke-width="0.5"/><line x1="202.0" y1="42.0" x2="202.0" y2="33.0" stroke="#3a6aaa" stroke-width="0.5"/><line x1="58.0" y1="33.0" x2="202.0" y2="33.0" stroke="#3a6aaa" stroke-width="0.8"/><text x="130.0" y="30.0" text-anchor="middle" font-family="monospace" font-size="7" fill="#3a6aaa">420mm</text><text x="130.0" y="185.0" text-anchor="middle" font-family="monospace" font-size="7" fill="#3a6aaa">TOP VIEW</text></svg></div>
+    </div>
+  </section>
+  <section class="illus-section">
+    <h2>Product Illustration</h2>
+    <div class="illus-wrap">
+      <div class="illus-svg-panel"><svg viewBox="0 0 520 380" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="ig" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24,0L0,0L0,24" fill="none" stroke="#0c1630" stroke-width="0.5"/></pattern></defs><rect width="520" height="380" fill="#060c1b"/><rect width="520" height="380" fill="url(#ig)" opacity="0.6"/><polygon points="232.6,179.3 233.5,179.8 232.1,180.6 231.2,180.1" fill="#2c303c" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="232.6,181.4 233.5,181.9 233.5,179.8 232.6,179.3" fill="#1c2030" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="233.5,181.9 232.1,182.7 232.1,180.6 233.5,179.8" fill="#0c1020" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="232.6,175.7 233.5,176.2 232.1,177.0 231.2,176.5" fill="#2c303c" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="232.6,177.8 233.5,178.3 233.5,176.2 232.6,175.7" fill="#1c2030" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="233.5,178.3 232.1,179.1 232.1,177.0 233.5,176.2" fill="#0c1020" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="232.6,172.1 233.5,172.6 232.1,173.3 231.2,172.8" fill="#2c303c" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="232.6,174.1 233.5,174.6 233.5,172.6 232.6,172.1" fill="#1c2030" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="233.5,174.6 232.1,175.4 232.1,173.3 233.5,172.6" fill="#0c1020" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="234.1,189.1 274.7,212.5 245.9,229.1 205.3,205.7" fill="#cdd2da" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="234.1,190.4 274.7,213.8 274.7,212.5 234.1,189.1" fill="#9aa0ae" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="274.7,213.8 245.9,230.4 245.9,229.1 274.7,212.5" fill="#626876" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="234.4,165.5 281.7,192.8 245.6,213.7 198.3,186.3" fill="#2c303c" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="234.4,186.3 281.7,213.7 281.7,192.8 234.4,165.5" fill="#1c2030" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="281.7,213.7 245.6,234.5 245.6,213.7 281.7,192.8" fill="#0c1020" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="238.4,186.6 239.8,187.4 239.8,179.6 238.4,178.8" fill="#9aa0ae" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><polygon points="239.8,187.4 239.4,187.6 239.4,179.8 239.8,179.6" fill="#626876" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><ellipse cx="239.1" cy="179.2" rx="0.8" ry="0.2" fill="#cdd2da" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><polygon points="244.7,190.2 246.1,191.0 246.1,183.2 244.7,182.5" fill="#9aa0ae" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><polygon points="246.1,191.0 245.7,191.2 245.7,183.4 246.1,183.2" fill="#626876" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><polygon points="247.2,171.7 271.1,185.4 269.7,186.2 245.9,172.4" fill="#2c303c" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="247.2,192.5 271.1,206.2 271.1,185.4 247.2,171.7" fill="#1c2030" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><polygon points="271.1,206.2 269.7,207.0 269.7,186.2 271.1,185.4" fill="#0c1020" stroke="rgba(0,0,0,0.25)" stroke-width="0.5"/><ellipse cx="245.4" cy="182.8" rx="0.8" ry="0.2" fill="#cdd2da" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><polygon points="251.0,193.9 252.4,194.7 252.4,186.9 251.0,186.1" fill="#9aa0ae" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><polygon points="252.4,194.7 252.0,194.9 252.0,187.1 252.4,186.9" fill="#626876" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><ellipse cx="251.7" cy="186.5" rx="0.8" ry="0.2" fill="#cdd2da" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><polygon points="257.3,197.5 258.7,198.3 258.7,190.5 257.3,189.7" fill="#9aa0ae" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><polygon points="258.7,198.3 258.4,198.5 258.4,190.7 258.7,190.5" fill="#626876" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><ellipse cx="258.0" cy="190.1" rx="0.8" ry="0.2" fill="#cdd2da" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><polygon points="263.6,201.2 265.0,201.9 265.0,194.2 263.6,193.4" fill="#9aa0ae" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><polygon points="265.0,201.9 264.7,202.1 264.7,194.3 265.0,194.2" fill="#626876" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><ellipse cx="264.3" cy="193.8" rx="0.8" ry="0.2" fill="#cdd2da" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><polygon points="269.9,204.8 271.3,205.6 271.3,197.8 269.9,197.0" fill="#9aa0ae" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><polygon points="271.3,205.6 271.0,205.8 271.0,198.0 271.3,197.8" fill="#626876" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><ellipse cx="270.6" cy="197.4" rx="0.8" ry="0.2" fill="#cdd2da" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><polygon points="276.3,208.4 277.6,209.2 277.6,201.4 276.3,200.7" fill="#9aa0ae" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><polygon points="277.6,209.2 277.3,209.4 277.3,201.6 277.6,201.4" fill="#626876" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/><ellipse cx="276.9" cy="201.0" rx="0.8" ry="0.2" fill="#cdd2da" stroke="rgba(0,0,0,0.2)" stroke-width="0.5"/></svg></div>
+      <div class="illus-labels-panel">
+        <div class="illus-product-cat">SYS-02  ·  Edge AI Gateway Hub</div>
+        <div class="il-callout"><span class="il-num" style="background:#0088ff">1</span><span class="il-text">Aluminium Chassis</span></div><div class="il-callout"><span class="il-num" style="background:#0088ff">2</span><span class="il-text">Antenna Array</span></div><div class="il-callout"><span class="il-num" style="background:#00cc88">3</span><span class="il-text">Industrial I/O Ports</span></div><div class="il-callout"><span class="il-num" style="background:#ff8c00">4</span><span class="il-text">Cooling Vents</span></div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <div class="grid grid-2">
+    <section>
+      <h2><span class="section-num">01</span> Industrial Design Brief</h2>
+      <div class="panel">
+        <div class="brief-grid">
+          <div class="brief-row"><span class="brief-label">Product</span><span class="brief-value">Famtech Hub</span></div>
+          <div class="brief-row"><span class="brief-label">Category</span><span class="brief-value">EDGE DEVICE</span></div>
+          <div class="brief-row"><span class="brief-label">Role</span><span class="brief-value">AI Gateway & Compute</span></div>
+          <div class="brief-row"><span class="brief-label">Target User</span><span class="brief-value">IT / Farm Managers</span></div>
+          <div class="brief-row"><span class="brief-label">Environment</span><span class="brief-value">Global</span></div>
+          <div class="brief-row"><span class="brief-label">Form Factor</span><span class="brief-value">Wall-Mount Cabinet</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="section-num">02</span> Product Specification</h2>
+      <div class="panel">
+        <table class="spec-table">
+          <tr><th>Power System</th><td>Mains</td></tr>
+          <tr><th>Battery</th><td>24V 10Ah UPS</td></tr>
+          <tr><th>Runtime</th><td>2 hours offline</td></tr>
+          <tr><th>Connectivity</th><td>Starlink, 5G, LoRa, Wi-Fi 6</td></tr>
+          <tr><th>Sensor Suite</th><td>Internal Temp</td></tr>
+          <tr><th>Ingress Protection</th><td>IP54</td></tr>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <div class="grid grid-3">
+    <section>
+      <h2><span class="section-num">03</span> Dimensions</h2>
+      <div class="panel">
+        <table class="spec-table">
+          <tr><th>L × W × H</th><td>420 × 320 × 160 mm</td></tr>
+          <tr><th>Ground Clearance</th><td>Mounted</td></tr>
+        </table>
+      </div>
+    </section>
+    <section>
+      <h2><span class="section-num">06</span> Mechanical Architecture</h2>
+      <div class="panel"><p>Extruded Al heatsink as structural chassis, forced-air GPU cooling</p></div>
+    </section>
+    <section>
+      <h2><span class="section-num">07</span> Materials & Finishes</h2>
+      <div class="panel"><p>Extruded aluminum heatsink chassis, vented galvanized steel covers</p></div>
+    </section>
+  </div>
+
+  <section>
+    <h2><span class="section-num">05</span> Component Map</h2>
+    <div class="panel">
+      <div class="comp-grid"><span class="comp-chip">Compute Board</span><span class="comp-chip">Active Cooling</span><span class="comp-chip">UPS Battery</span><span class="comp-chip">I/O Panel</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="section-num">08</span> Fusion Build Sequence</h2>
+    <div class="panel">
+      <ul class="fusion-list"><li>Alum_Chassis</li><li>Motherboard</li><li>Cooling_Fans</li><li>UPS_Block</li><li>Steel_Cover</li></ul>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="section-num">09</span> Rendering Instructions</h2>
+    <div class="panel"><p><strong>Style:</strong> Premium industrial PBR, dark studio background, realistic shadows &amp; reflections.</p><p><strong>Required Views:</strong> Front 3/4 Hero</p></div>
+  </section>
+
+  <section>
+    <h2><span class="section-num">10</span> Annotation / Callout List</h2>
+    <div class="panel"><div class="ann-list"><span class="ann-tag">Antenna Array</span><span class="ann-tag">Cooling Vents</span><span class="ann-tag">Industrial I/O</span></div></div>
+  </section>
+
+  <section>
+    <div class="risk-panel">
+      <h2><span class="section-num" style="background:rgba(239,68,68,0.15);color:#ef4444;">11</span> Engineering Risks & Unknowns</h2>
+      <ul class="risk-list"><li>Dust clogging fans</li><li>Overheating in sheds</li></ul>
+    </div>
+  </section>
+
+  <div class="grid grid-2">
+    <section>
+      <h2><span class="section-num">12</span> Manufacturing Notes</h2>
+      <div class="panel"><p>CNC extruded aluminum body, punched sheet metal covers</p></div>
+    </section>
+    <section>
+      <h2><span class="section-num">13</span> Maintenance & Serviceability</h2>
+      <div class="panel"><p>Dust clogging fans. CNC extruded aluminum body, punched sheet metal covers</p></div>
+    </section>
+  </div>
+
+  <footer class="site-footer">
+    <span class="footer-brand">Famtech Industrial Design System &copy; 2026 &mdash; Internal Confidential</span>
+    <nav class="product-footer-nav">
+      <a href="09_fencegrid.html" class="prev">Fencegrid</a>
+      <a href="11_crewlink.html" class="next">CrewLink</a>
+    </nav>
+  </footer>
+</div>
+  <script>
+    (function(){
+      var bar = document.getElementById('read-progress');
+      if (!bar) return;
+      function upd() {
+        var h = document.documentElement.scrollHeight - window.innerHeight;
+        bar.style.width = (h > 0 ? (window.scrollY / h * 100) : 0) + '%';
+      }
+      window.addEventListener('scroll', upd, {passive:true});
+      upd();
+    })();
+  </script>
+</body>
+</html>
