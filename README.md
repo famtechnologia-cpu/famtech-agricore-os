@@ -59,6 +59,19 @@ open http://localhost:8000/docs
 ## Milestone Status
 
 - [x] M1: Foundation — repo, database, auth, dashboard shell
-- [ ] M2: Device & Telemetry — MQTT, real-time data
-- [ ] M3: Map, Alerts, Rules — live farm map
-- [ ] M4: Reports, Workers, Offline PWA
+- [x] M2: Device & Telemetry — MQTT, real-time data
+- [x] M3: Map, Alerts, Rules — live farm map
+- [x] M4: Reports, Workers, Offline PWA
+
+## Hardware & Edge Integration
+
+### Edge Hub (Store & Forward)
+The Edge Gateway runs on a Raspberry Pi or IPC inside the farm's local network, receiving telemetry via MQTT and queuing it for cloud sync when internet is available.
+
+```bash
+# Run the Edge Gateway locally
+docker compose -f docker-compose.edge.yml up -d
+```
+
+### MicroPython Firmware
+A reference MicroPython template for ESP32 devices is provided in `firmware/esp32_soilnode/main.py`. Flash this to your hardware, paste your `FARM_ID`, `DEVICE_ID`, and `API_KEY`, and it will securely push telemetry to the Edge Hub or Cloud.
