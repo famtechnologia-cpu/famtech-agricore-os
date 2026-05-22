@@ -1,0 +1,48 @@
+version: "3.9"
+# Edge gateway — runs on the Famtech Hub (Raspberry Pi / industrial PC)
+# No internet required. Syncs to cloud when connectivity restores.
+
+services:
+  mqtt-edge:
+    image: eclipse-mosquitto:2
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./infra/mosquitto-edge.conf:/mosquitto/config/mosquitto.conf
+      - mqtt-data:/mosquitto/data
+    restart: unless-stopped
+
+  edge-api:
+    build:
+      context: ./apps/edge
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8001"
+    environment:
+      CLOUD_URL: ${CLOUD_URL:-http://api.famtech.io}
+      SYNC_INTERVAL: ${SYNC_INTERVAL:-60}
+    volumes:
+      - edge-db:/data
+    command: python main.py
+    restart: unless-stopped
+    depends_on:
+      - mqtt-edge
+
+  mqtt-listener:
+    build:
+      context: ./apps/api
+      dockerfile: Dockerfile
+    environment:
+      DATABASE_URL: sqlite+aiosqlite:////data/edge_local.db
+      MQTT_HOST: mqtt-edge
+      MQTT_PORT: 1883
+    volumes:
+      - edge-db:/data
+    command: python -m workers.mqtt_listener
+    restart: unless-stopped
+    depends_on:
+      - mqtt-edge
+
+volumes:
+  mqtt-data:
+  edge-db:
